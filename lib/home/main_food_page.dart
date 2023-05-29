@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/home/food_page_body.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/big_text.dart';
@@ -31,8 +32,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
         children: [
           Container(
             child: Container(
-              margin: const EdgeInsets.only(top:15, bottom: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              margin:  EdgeInsets.only(top:15.h, bottom: 15.h),
+              padding:  EdgeInsets.symmetric(horizontal: 20.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -50,10 +51,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   ),
                   Center(
                     child: Container(
-                      width: 45,
-                      height: 45,
+                      width: 45.w,
+                      height: 45.h,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15.w),
                           color: AppColors.mainColor),
                       child: const Icon(Icons.search, color: Colors.white,),
                     ),
@@ -62,7 +63,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
-          FoodPageBody()
+          Expanded(
+              child: SingleChildScrollView(
+                child: FoodPageBody(),
+              ))
         ],
       ),
     );
