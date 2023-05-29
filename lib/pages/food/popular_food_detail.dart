@@ -14,17 +14,17 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark,
-          statusBarColor: Colors.transparent,
-          systemNavigationBarDividerColor: Colors.transparent,
-          systemNavigationBarColor: AppColors.buttonBackgroundColor,
-          systemNavigationBarIconBrightness: Brightness.dark,
-        ),
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     statusBarIconBrightness: Brightness.dark,
+      //     statusBarColor: Colors.transparent,
+      //     systemNavigationBarDividerColor: Colors.transparent,
+      //     systemNavigationBarColor: AppColors.buttonBackgroundColor,
+      //     systemNavigationBarIconBrightness: Brightness.dark,
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      // ),
 
       extendBody: true,
       extendBodyBehindAppBar: true,
@@ -91,9 +91,16 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    ExpandableTextWidget(
-                        text:
-                            "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum"),
+                    Expanded(
+
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.only(bottom: 130.h),
+                        child: const ExpandableTextWidget(
+                            text:
+                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum"),
+                      ),
+                    ),
                   ],
                 ),
               )),
@@ -102,7 +109,7 @@ class PopularFoodDetail extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: 120.h,
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(50.w),

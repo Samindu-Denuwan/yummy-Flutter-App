@@ -36,33 +36,25 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: secondHalf.isEmpty? SmallText(text: firstHalf):
-      Expanded(
-
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.only(bottom: 130.h),
-
-          child: Column(
-            children: [
-              SmallText(text: hiddenText?("$firstHalf...") :
-                  firstHalf+ secondHalf,size: 13, height: 1.7, color: Colors.grey.shade500,
-              ),
-              InkWell(
-                child: Row(
-                  children: [
-                    SmallText(text: "Show more", color: AppColors.mainColor,),
-                     Icon(hiddenText?Icons.arrow_drop_down: Icons.arrow_drop_up, color: AppColors.mainColor,),
-                  ],
-                ),
-                onTap: (){
-                  setState(() {
-                    hiddenText=! hiddenText;
-                  });
-                },
-              ),
-            ],
+      Column(
+        children: [
+          SmallText(text: hiddenText?("$firstHalf...") :
+              firstHalf+ secondHalf,size: 13, height: 1.7, color: Colors.grey.shade500,
           ),
-        ),
+          InkWell(
+            child: Row(
+              children: [
+                SmallText(text: "Show more", color: AppColors.mainColor,),
+                 Icon(hiddenText?Icons.arrow_drop_down: Icons.arrow_drop_up, color: AppColors.mainColor,),
+              ],
+            ),
+            onTap: (){
+              setState(() {
+                hiddenText=! hiddenText;
+              });
+            },
+          ),
+        ],
       ),
     );
   }
