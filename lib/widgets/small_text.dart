@@ -22,7 +22,7 @@ class SmallText extends StatelessWidget {
           color: color,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.normal,
-        height: height
+        height: height.sp
       ),
     );
   }
