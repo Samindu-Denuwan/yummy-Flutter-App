@@ -19,6 +19,7 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product = Get.find<PopularProductController>().
     popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -51,7 +52,7 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                      Get.to(()=>MainFoodPage());
+                      Get.to(()=>const MainFoodPage());
                   },
                   child: AppIcon(
                       icon: Icons.arrow_back_ios_new,
@@ -114,66 +115,77 @@ class PopularFoodDetail extends StatelessWidget {
           // Expandable text
         ],
       ),
-      bottomNavigationBar: Container(
-        height: 120.h,
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50.w),
-                topRight: Radius.circular(50.w)),
-            color: AppColors.buttonBackgroundColor),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+      bottomNavigationBar:GetBuilder<PopularProductController>(
+          builder: (popularProduct) {
+            return Container(
+              height: 120.h,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.w),
-                  color: Colors.white),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50.w),
+                      topRight: Radius.circular(50.w)),
+                  color: AppColors.buttonBackgroundColor),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.w),
+                        color: Colors.white),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: (){popularProduct.setQuantity(false);},
+                          child: const Icon(
+                            Icons.remove,
+                            color: AppColors.signColor,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        BigText(
+                          text: "${popularProduct.quantity}",
+                        ),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            popularProduct.setQuantity(true);
+                          },
+                          child: const Icon(
+                            Icons.add,
+                            color: AppColors.signColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  BigText(
-                    text: "0",
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  const Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.w),
+                        color: AppColors.mainColor),
+                    child: Row(
+                      children: [
+                        BigText(
+                          text: "LKR ${product.price} |",
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        const Icon(Icons.add_shopping_cart, color: Colors.white),
+                        //BigText(text: "| Add to cart", size: 16, color: Colors.white, ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.w),
-                  color: AppColors.mainColor),
-              child: Row(
-                children: [
-                  BigText(
-                    text: "LKR ${product.price} |",
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  const Icon(Icons.add_shopping_cart, color: Colors.white),
-                  //BigText(text: "| Add to cart", size: 16, color: Colors.white, ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+            );
+          },)
     );
   }
 }
