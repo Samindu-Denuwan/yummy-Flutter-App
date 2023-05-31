@@ -103,7 +103,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.w),
                       color: Colors.white),
-                  child: Row(
+                  child: const Row(
                     children: [
                        Icon(
                         Icons.favorite,
