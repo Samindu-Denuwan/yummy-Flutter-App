@@ -7,6 +7,7 @@ import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
 import 'package:flutter/services.dart';
+import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -43,12 +44,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-
-
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         home: MainFoodPage(),
+        initialRoute: RouteHelper.initial,
+        getPages: RouteHelper.routes,
       );
     },);
   }

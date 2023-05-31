@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:yummy/controllers/popular_product_controller.dart';
+import 'package:yummy/pages/home/main_food_page.dart';
+import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/app_column.dart';
 import 'package:yummy/widgets/app_icon.dart';
@@ -8,25 +12,16 @@ import 'package:yummy/widgets/big_text.dart';
 import 'package:yummy/widgets/expandable_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail( {Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().
+    popularProductList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   systemOverlayStyle: const SystemUiOverlayStyle(
-      //     statusBarIconBrightness: Brightness.dark,
-      //     statusBarColor: Colors.transparent,
-      //     systemNavigationBarDividerColor: Colors.transparent,
-      //     systemNavigationBarColor: AppColors.buttonBackgroundColor,
-      //     systemNavigationBarIconBrightness: Brightness.dark,
-      //   ),
-      //   backgroundColor: Colors.transparent,
-      // ),
-
-      extendBody: true,
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
@@ -37,10 +32,13 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: 350.h,
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/image/food0.png"))),
+                      image: NetworkImage(
+                          AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!)
+                  )
+              ),
             ),
           ),
           //icon widget
@@ -51,12 +49,20 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                    icon: Icons.arrow_back_ios_new,
-                    backgroundColor: Colors.white30),
-                AppIcon(
-                    icon: Icons.shopping_cart_outlined,
-                    backgroundColor: Colors.white30),
+                GestureDetector(
+                  onTap: () {
+                      Get.to(()=>MainFoodPage());
+                  },
+                  child: AppIcon(
+                      icon: Icons.arrow_back_ios_new,
+                      ),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: AppIcon(
+                      icon: Icons.shopping_cart_outlined,
+                      ),
+                ),
               ],
             ),
           ),
@@ -77,8 +83,9 @@ class PopularFoodDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppColumn(
-                      text: "Chinese Side",
+                      text: product.name!,
                       size: 24,
+                      stars: product.stars!,
                     ),
                     SizedBox(
                       height: 20.h,
@@ -96,9 +103,9 @@ class PopularFoodDetail extends StatelessWidget {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         padding: EdgeInsets.only(bottom: 130.h),
-                        child: const ExpandableTextWidget(
-                            text:
-                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum"),
+                        child:  ExpandableTextWidget(
+                            text:product.description!
+                        ),
                       ),
                     ),
                   ],
@@ -153,7 +160,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Row(
                 children: [
                   BigText(
-                    text: "LKR 1500 |",
+                    text: "LKR ${product.price} |",
                     color: Colors.white,
                   ),
                   SizedBox(

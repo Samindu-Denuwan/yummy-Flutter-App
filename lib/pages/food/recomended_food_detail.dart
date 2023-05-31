@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yummy/controllers/recommended_product_controller.dart';
+import 'package:yummy/routes/route_helper.dart';
+import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/app_icon.dart';
 import 'package:yummy/widgets/big_text.dart';
 import 'package:yummy/widgets/expandable_text.dart';
-import 'package:yummy/widgets/icon_and_text-widget.dart';
+import 'package:get/get.dart';
 
-class RecomendedFoodDetail extends StatelessWidget {
-  const RecomendedFoodDetail({Key? key}) : super(key: key);
+class RecommendedFoodDetail extends StatelessWidget {
+  int pageId;
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<RecommendedProductController>().
+    recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-               AppIcon(icon: Icons.close),
+               GestureDetector(
+                 onTap: (){
+                   Get.toNamed(RouteHelper.getInitial());
+                 },
+                   child: AppIcon(icon: Icons.close)),
                AppIcon(icon: Icons.shopping_cart_outlined),
              ],
             ),
             toolbarHeight: 70.h,
             bottom: PreferredSize(
+                preferredSize: Size.fromHeight(20.h),
                 child: Container(
-                  child: Center(child: BigText(text: "Chinese Side", size: 22,)),
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5.h),
                   decoration: BoxDecoration(
@@ -37,16 +48,18 @@ class RecomendedFoodDetail extends StatelessWidget {
                     color: Colors.white,
 
                   ),
-                ),
-                preferredSize: Size.fromHeight(20.h)),
+                  child: Center(
+                      child:
+                      BigText(
+                        text: product.name!, size: 22,)),
+                )),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300.h,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/image/food0.png",
-              width: double.maxFinite,
-                fit: BoxFit.cover,
-              ),
+              background: Image.network(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
+                width: double.maxFinite,
+                fit: BoxFit.cover,),
             ),
           ),
            SliverToBoxAdapter(
@@ -55,9 +68,8 @@ class RecomendedFoodDetail extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(vertical:10.h,horizontal: 20.w),
-                    child: const ExpandableTextWidget(
-                        text:
-                        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered the Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered th Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered thContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClint discovered th undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum"),
+                    child:  ExpandableTextWidget(
+                        text:product.description! ),
                   ),
                 ],
               ),
@@ -78,7 +90,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                  iconColor: Colors.white,
                  iconSize: 24,
                ),
-               BigText(text: "LKR 1500 " +" X "+ " 0"),
+               BigText(text: "LKR ${product.price!}  X  0"),
                AppIcon(icon: Icons.add,
                  backgroundColor: AppColors.mainColor,
                  iconColor: Colors.white,
@@ -122,7 +134,7 @@ class RecomendedFoodDetail extends StatelessWidget {
                   child: Row(
                     children: [
                       BigText(
-                        text: "LKR 1500 |",
+                        text: "LKR ${product.price!} |",
                         color: Colors.white,
                       ),
                       SizedBox(

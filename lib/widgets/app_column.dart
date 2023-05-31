@@ -10,11 +10,13 @@ class AppColumn extends StatelessWidget {
   Color? color;
   double size;
   TextOverflow overflow;
+  final int stars;
 
    AppColumn({Key? key, required this.text,
     this.color = const Color(0xFF332d2b),
     this.size = 18,
-    this.overflow = TextOverflow.ellipsis
+     required this.stars,
+    this.overflow = TextOverflow.ellipsis,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class AppColumn extends StatelessWidget {
           children: [
             Wrap(
               children: List.generate(
-                  5,
+                  stars,
                       (index) => Icon(
                     Icons.star,
                     color: AppColors.mainColor,
@@ -51,7 +53,7 @@ class AppColumn extends StatelessWidget {
               width: 10.w,
             ),
             SmallText(
-              text: "4.5",
+              text: '$stars',
               color: Colors.grey,
             ),
             SizedBox(
