@@ -8,6 +8,7 @@ import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
 import 'package:flutter/services.dart';
 import 'package:yummy/utils/colors.dart';
+import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'pages/home/main_food_page.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
+    Get.find<RecommendedProductController>().getRecommendedProductList();
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       minTextAdapt: true,
