@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
+import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
 import 'package:flutter/services.dart';

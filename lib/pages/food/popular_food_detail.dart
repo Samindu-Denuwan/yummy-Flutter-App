@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
+import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/home/main_food_page.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -65,8 +66,13 @@ class PopularFoodDetail extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: (){},
-                        child: AppIcon(
-                          icon: Icons.shopping_cart_outlined,
+                        child: GestureDetector(
+                          onTap:(){
+                            Get.to(()=> CartPage());
+                          },
+                          child: AppIcon(
+                            icon: Icons.shopping_cart_outlined,
+                          ),
                         ),
                       ),
                       Get.find<PopularProductController>().totalItems>= 1?
@@ -90,7 +96,7 @@ class PopularFoodDetail extends StatelessWidget {
                       Container()
                     ],
                   );
-                },)              ],
+                },)   ],
             ),
           ),
           //food details

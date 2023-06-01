@@ -6,6 +6,8 @@ import 'package:yummy/data/repository/popular_product_repo.dart';
 import 'package:yummy/models/products_model.dart';
 import 'package:yummy/utils/colors.dart';
 
+import '../models/cart_model.dart';
+
 class PopularProductController extends GetxController{
   final PopularProductRepo popularProductRepo;
 
@@ -51,6 +53,10 @@ class PopularProductController extends GetxController{
       margin: EdgeInsets.symmetric(vertical: 10.h , horizontal: 10.w),
       colorText: Colors.white,
           icon: Icon(Icons.error, color: Colors.white, size: 30.sp,));
+      if(_inCartItems> 0){
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     }else if( (_inCartItems+quantity)>20){
       Get.snackbar("Item Count", "You can't add more!",
@@ -98,6 +104,10 @@ class PopularProductController extends GetxController{
 
   int get totalItems{
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems{
+    return _cart.getItems;
   }
 
 
