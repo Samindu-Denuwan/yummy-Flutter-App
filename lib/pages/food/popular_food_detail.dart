@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/pages/home/main_food_page.dart';
 import 'package:yummy/utils/app_constants.dart';
@@ -19,7 +20,7 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product = Get.find<PopularProductController>().
     popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>().initProduct(product,Get.find<CartController>());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -146,7 +147,7 @@ class PopularFoodDetail extends StatelessWidget {
                           width: 8.w,
                         ),
                         BigText(
-                          text: "${popularProduct.quantity}",
+                          text: "${popularProduct.inCartItems}",
                         ),
                         SizedBox(
                           width: 8.w,
@@ -163,23 +164,28 @@ class PopularFoodDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.w),
-                        color: AppColors.mainColor),
-                    child: Row(
-                      children: [
-                        BigText(
-                          text: "LKR ${product.price} |",
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        const Icon(Icons.add_shopping_cart, color: Colors.white),
-                        //BigText(text: "| Add to cart", size: 16, color: Colors.white, ),
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                      popularProduct.addItems(product);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.w),
+                          color: AppColors.mainColor),
+                      child: Row(
+                        children: [
+                          BigText(
+                            text: "LKR ${product.price} |",
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          const Icon(Icons.add_shopping_cart, color: Colors.white),
+                          //BigText(text: "| Add to cart", size: 16, color: Colors.white, ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
