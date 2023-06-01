@@ -90,8 +90,14 @@ class PopularProductController extends GetxController{
         print("The id is ${value.id}The qty is ${value.quantity}");
       });
 
+      update();
 
 
+
+  }
+
+  int get totalItems{
+    return _cart.totalItems;
   }
 
 

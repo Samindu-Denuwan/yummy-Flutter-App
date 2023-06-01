@@ -11,6 +11,7 @@ import 'package:yummy/widgets/app_column.dart';
 import 'package:yummy/widgets/app_icon.dart';
 import 'package:yummy/widgets/big_text.dart';
 import 'package:yummy/widgets/expandable_text.dart';
+import 'package:yummy/widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
@@ -59,13 +60,37 @@ class PopularFoodDetail extends StatelessWidget {
                       icon: Icons.arrow_back_ios_new,
                       ),
                 ),
-                GestureDetector(
-                  onTap: (){},
-                  child: AppIcon(
-                      icon: Icons.shopping_cart_outlined,
+                GetBuilder<PopularProductController>(builder: (controller) {
+                  return Stack(
+                    children: [
+                      GestureDetector(
+                        onTap: (){},
+                        child: AppIcon(
+                          icon: Icons.shopping_cart_outlined,
+                        ),
                       ),
-                ),
-              ],
+                      Get.find<PopularProductController>().totalItems>= 1?
+                      Positioned(
+                        right:0,
+                        top:0,
+                        child: AppIcon(
+                          icon: Icons.circle, size: 20, iconColor: Colors.transparent,
+                          backgroundColor: AppColors.mainColor,
+                        ),
+                      ):
+                      Container(),
+                      Get.find<PopularProductController>().totalItems>= 1?
+                      Positioned(
+                        right:5.w,
+                        top:2.h,
+                        child: BigText(text:"${controller.totalItems}",
+                          color: Colors.white,
+                        size: 12,),
+                      ):
+                      Container()
+                    ],
+                  );
+                },)              ],
             ),
           ),
           //food details
