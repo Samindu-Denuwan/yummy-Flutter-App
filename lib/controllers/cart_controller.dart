@@ -14,18 +14,21 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
-  void addItem(ProductModel product, int quantity) {
+  void addItem(ProductModel product, int quantity, bool pageStatus) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id)) {
       _items.update(product.id!, (value) {
 
         totalQuantity = value.quantity!+quantity;
 
-        Get.snackbar("Change Item Count", "Successfully change item count in the cart.",
-            icon: Icon(Icons.check_circle, size: 30.sp, color: Colors.white,),
-            backgroundColor: AppColors.mainColor,
-            colorText: Colors.white,
-            margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w));
+        if(pageStatus){
+          Get.snackbar("Change Item Count", "Successfully change item count in the cart.",
+              icon: Icon(Icons.check_circle, size: 30.sp, color: Colors.white,),
+              backgroundColor: AppColors.mainColor,
+              colorText: Colors.white,
+              margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w));
+        }
+
         return CartModel(
           id: value.id,
           name: value.name,
@@ -34,6 +37,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
       if(totalQuantity<=0){
@@ -55,6 +59,7 @@ class CartController extends GetxController {
             quantity: quantity,
             isExist: true,
             time: DateTime.now().toString(),
+            product: product,
           );
         });
       }else{
@@ -65,6 +70,8 @@ class CartController extends GetxController {
             margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w));
       }
     }
+
+    update();
   }
 
   bool existInCart(ProductModel product) {
@@ -99,6 +106,14 @@ class CartController extends GetxController {
    return _items.entries.map((e) {
      return  e.value;
     }).toList();
+  }
+
+  int get totalAmount{
+    var total =0;
+    _items.forEach((key, value) {
+      total += value.quantity!* value.price!;
+    });
+    return total;
   }
 
 }

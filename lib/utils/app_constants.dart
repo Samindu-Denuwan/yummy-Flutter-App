@@ -8,5 +8,7 @@ class AppConstants{
 
   static const String UPLOAD_URL = "/uploads/";
 
+  static const String EMPTY_CART = "https://assets4.lottiefiles.com/packages/lf20_qh5z2fdq.json";
+
   static const String TOKEN = 'YummyToken';
 }
