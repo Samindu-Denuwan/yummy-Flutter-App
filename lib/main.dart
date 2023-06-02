@@ -8,6 +8,7 @@ import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
 import 'package:flutter/services.dart';
+import 'package:yummy/pages/pages.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -34,8 +35,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       minTextAdapt: true,
@@ -47,7 +46,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        initialRoute: RouteHelper.getInitial(),
+        initialRoute: RouteHelper.getSplash(),
         getPages: RouteHelper.routes,
       );
     },);

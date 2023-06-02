@@ -2,18 +2,28 @@ import 'package:get/get.dart';
 import 'package:yummy/pages/pages.dart';
 
 class RouteHelper{
+  static const String splashScreen = "/splash-screen";
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
 
 
+
+  static String getSplash ()=> '$splashScreen';
   static String getInitial ()=> '$initial';
   static String getPopularFood (int pageId, String page)=> '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood (int pageId, String page)=> '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage()=> '$cartPage';
 
+
   static List<GetPage> routes =[
+    GetPage(
+      name: splashScreen,
+      page: ()=>const SplashScreen(),
+      transition: Transition.fadeIn,
+    ),
+
     GetPage(
         name: initial,
         page: ()=>const HomePage(),
