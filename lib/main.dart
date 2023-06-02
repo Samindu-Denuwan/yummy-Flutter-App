@@ -43,12 +43,11 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Yummy',
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: MainFoodPage(),
-        initialRoute: RouteHelper.initial,
+        initialRoute: RouteHelper.getInitial(),
         getPages: RouteHelper.routes,
       );
     },);

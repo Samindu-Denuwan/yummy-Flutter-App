@@ -16,7 +16,7 @@ class RouteHelper{
   static List<GetPage> routes =[
     GetPage(
         name: initial,
-        page: ()=>const MainFoodPage(),
+        page: ()=>const HomePage(),
         transition: Transition.fadeIn,
     ),
 
