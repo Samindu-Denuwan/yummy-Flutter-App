@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
@@ -35,20 +36,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 780),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Yummy',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        initialRoute: RouteHelper.getSplash(),
-        getPages: RouteHelper.routes,
-      );
+    Get.find<CartController>().getCartData();
+  return  GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedProductController>(builder: (_) {
+        return ScreenUtilInit(
+          designSize: const Size(360, 780),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Yummy',
+              theme: ThemeData(
+                useMaterial3: true,
+              ),
+              initialRoute: RouteHelper.getSplash(),
+              getPages: RouteHelper.routes,
+            );
+          },);
+
+      },);
+
     },);
   }
 }

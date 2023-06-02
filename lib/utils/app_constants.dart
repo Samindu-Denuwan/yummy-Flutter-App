@@ -11,4 +11,5 @@ class AppConstants{
   static const String EMPTY_CART = "https://assets4.lottiefiles.com/packages/lf20_qh5z2fdq.json";
 
   static const String TOKEN = 'YummyToken';
+  static const String CART_LIST = 'cart-list';
 }
