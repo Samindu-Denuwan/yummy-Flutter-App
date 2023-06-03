@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yummy/pages/cart/cart_history.dart';
 import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/home/main_food_page.dart';
 import 'package:yummy/widgets/big_text.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return [
       const MainFoodPage(),
       Center(child: BigText(text: "Second Page")),
-      const CartPage(),
+      const CartHistory(),
       Center(child: BigText(text: "Fourth Page")),
     ];
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:yummy/controllers/cart_controller.dart';
@@ -216,7 +217,7 @@ class CartPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-
+                        cartController.addToHistory();
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),
