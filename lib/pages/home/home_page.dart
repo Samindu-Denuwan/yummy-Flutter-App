@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yummy/base/no_data_page.dart';
 import 'package:yummy/pages/cart/cart_history.dart';
 import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/home/main_food_page.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       const MainFoodPage(),
-      Center(child: BigText(text: "Second Page")),
+      const NoDataPage(text: "Your Cart is Empty"),
       const CartHistory(),
       Center(child: BigText(text: "Fourth Page")),
     ];
