@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,7 +100,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300.h,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
+              background: CachedNetworkImage(imageUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,),
             ),

@@ -7,6 +7,7 @@ import 'package:yummy/controllers/recommended_product_controller.dart';
 import 'package:yummy/models/products_model.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -233,7 +234,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   color: index.isEven ? Colors.yellow : Colors.blue,
                   image:  DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!),
+                      image: CachedNetworkImageProvider(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!),
+
                   ),
               ),
             ),
