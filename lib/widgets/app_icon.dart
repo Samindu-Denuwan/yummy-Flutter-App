@@ -21,7 +21,7 @@ class AppIcon extends StatelessWidget {
       width: size.w,
       height: size.w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.w),
+        borderRadius: BorderRadius.circular(size.w),
         color: backgroundColor,
 
       ),

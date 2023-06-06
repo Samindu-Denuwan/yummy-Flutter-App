@@ -5,6 +5,7 @@ import 'package:yummy/base/no_data_page.dart';
 import 'package:yummy/pages/cart/cart_history.dart';
 import 'package:yummy/pages/cart/cart_page.dart';
 import 'package:yummy/pages/home/main_food_page.dart';
+import 'package:yummy/pages/pages.dart';
 import 'package:yummy/widgets/big_text.dart';
 import '../../utils/colors.dart';
 import 'package:badges/badges.dart' as badges;
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       const MainFoodPage(),
       const NoDataPage(text: "Your Cart is Empty"),
       const CartHistory(),
-      Center(child: BigText(text: "Fourth Page")),
+      const AccountPage(),
     ];
   }
 

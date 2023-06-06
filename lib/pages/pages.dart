@@ -6,3 +6,4 @@ export 'cart/cart_page.dart';
 export 'home/home_page.dart';
 export 'splash/splash_screen.dart';
 export 'cart/cart_history.dart';
+export 'account/account_page.dart';
