@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       const MainFoodPage(),
-      const NoDataPage(text: "Your Cart is Empty"),
+      SignUpPage(),
       const CartHistory(),
       const AccountPage(),
     ];

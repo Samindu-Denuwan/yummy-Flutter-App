@@ -27,13 +27,24 @@ class AccountWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.only(
           left: 20.w,
+          right: 20.w,
           top: 10.h,
           bottom: 10.h),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         appIcon,
-          SizedBox(width: 10.w,),
-          bigText
+          Row(
+            children: [
+             appIcon,
+              SizedBox(width: 10.w,),
+              bigText,
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.chevron_right, color: Colors.grey.shade400,),
+            ],
+          )
         ],
       ),
     );

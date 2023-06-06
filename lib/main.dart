@@ -50,8 +50,9 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 useMaterial3: true,
               ),
-              initialRoute: RouteHelper.getSplash(),
-              getPages: RouteHelper.routes,
+              home: SignInPage(),
+              // initialRoute: RouteHelper.getSplash(),
+              // getPages: RouteHelper.routes,
             );
           },);
 

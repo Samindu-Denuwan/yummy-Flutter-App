@@ -43,7 +43,7 @@ class AccountPage extends StatelessWidget {
                       iconColor: Colors.white,
                       backgroundColor: AppColors.mainColor,),
                         bigText: BigText(text: "Samindu")),
-                    SizedBox(height: 20.h,),
+                    SizedBox(height: 10.h,),
                     //phone
                     AccountWidget(appIcon: AppIcon(
                       icon: Icons.phone,
@@ -51,8 +51,8 @@ class AccountPage extends StatelessWidget {
                       size: 45,
                       iconColor: Colors.white,
                       backgroundColor: AppColors.yellowColor,),
-                        bigText: BigText(text: "Samindu")),
-                    SizedBox(height: 20.h,),
+                        bigText: BigText(text: "Samindu",fontWeight: FontWeight.w200,)),
+                    SizedBox(height: 10.h,),
                     //email
                     AccountWidget(appIcon: AppIcon(
                       icon: Icons.email,
@@ -60,8 +60,8 @@ class AccountPage extends StatelessWidget {
                       size: 45,
                       iconColor: Colors.white,
                       backgroundColor: AppColors.yellowColor,),
-                        bigText: BigText(text: "Samindu")),
-                    SizedBox(height: 20.h,),
+                        bigText: BigText(text: "Samindu",fontWeight: FontWeight.w200,)),
+                    SizedBox(height: 10.h,),
                     //address
                     AccountWidget(appIcon: AppIcon(
                       icon: Icons.location_on,
@@ -69,8 +69,8 @@ class AccountPage extends StatelessWidget {
                       size: 45,
                       iconColor: Colors.white,
                       backgroundColor: AppColors.yellowColor,),
-                        bigText: BigText(text: "Samindu")),
-                    SizedBox(height: 20.h,),
+                        bigText: BigText(text: "Samindu",fontWeight: FontWeight.w200,)),
+                    SizedBox(height: 10.h,),
                     //message
                     AccountWidget(appIcon: AppIcon(
                       icon: Icons.message,
@@ -78,8 +78,8 @@ class AccountPage extends StatelessWidget {
                       size: 45,
                       iconColor: Colors.white,
                       backgroundColor: Colors.blue,),
-                        bigText: BigText(text: "Samindu")),
-                    SizedBox(height: 20.h,),
+                        bigText: BigText(text: "Samindu",fontWeight: FontWeight.w200,)),
+                    SizedBox(height: 10.h,),
                     //logout
                     AccountWidget(appIcon: AppIcon(
                       icon: Icons.logout,
@@ -87,7 +87,7 @@ class AccountPage extends StatelessWidget {
                       size: 45,
                       iconColor: Colors.white,
                       backgroundColor: Colors.red,),
-                        bigText: BigText(text: "Samindu")),
+                        bigText: BigText(text: "Samindu", fontWeight: FontWeight.w200,)),
                     SizedBox(height: 20.h,),
                   ],
                 ),
