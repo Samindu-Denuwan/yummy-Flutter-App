@@ -5,26 +5,22 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
-import 'package:yummy/pages/cart/cart_page.dart';
-import 'package:yummy/pages/food/popular_food_detail.dart';
-import 'package:yummy/pages/food/recomended_food_detail.dart';
 import 'package:flutter/services.dart';
 import 'package:yummy/pages/pages.dart';
-import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
-import 'pages/home/main_food_page.dart';
+import 'routes/route_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
         systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarColor:AppColors.buttonBackgroundColor,
+        systemNavigationBarColor:Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark));
   }
   runApp(const MyApp());
@@ -51,8 +47,8 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               home: SignInPage(),
-              // initialRoute: RouteHelper.getSplash(),
-              // getPages: RouteHelper.routes,
+             //  initialRoute: RouteHelper.getSplash(),
+             //  getPages: RouteHelper.routes,
             );
           },);
 
