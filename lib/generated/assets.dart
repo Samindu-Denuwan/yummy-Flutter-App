@@ -2,7 +2,8 @@
 class Assets {
   Assets._();
 
-  static const String animationEmptyCart = 'assets/animation/empty_cart.json';
+  static  String animationEmptyCart = 'assets/animation/empty_cart.json';
+  static  String animationLoading = 'assets/animation/loading.json';
   static const String fontPoppinsBold = 'assets/font/Poppins-Bold.ttf';
   static const String fontPoppinsMedium = 'assets/font/Poppins-Medium.ttf';
   static const String fontPoppinsRegular = 'assets/font/Poppins-Regular.ttf';
@@ -42,9 +43,9 @@ class Assets {
   static const String imageLogOut = 'assets/image/log_out.png';
   static const String imageLoginbtn = 'assets/image/loginbtn.png';
   static const String imageLoginimg = 'assets/image/loginimg.png';
-  static const String SplashScreen_image_1 = 'assets/image/logo_part_1.png';
-  static const String SplashScreen_image_2 = 'assets/image/logo_part_2.png';
   static const String imageLogoName = 'assets/image/logo_name.png';
+  static const String imageLogoPart1 = 'assets/image/logo_part_1.png';
+  static const String imageLogoPart2 = 'assets/image/logo_part_2.png';
   static const String imageMail = 'assets/image/mail.png';
   static const String imageMaintenance = 'assets/image/maintenance.png';
   static const String imageMap = 'assets/image/map.png';
