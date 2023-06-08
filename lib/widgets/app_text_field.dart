@@ -24,8 +24,8 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30.w),
           boxShadow: [
             BoxShadow(
-                blurRadius: 10,
-                spreadRadius: 7,
+                blurRadius: 3,
+                spreadRadius: 1,
                 offset: Offset(1, 1),
                 color: Colors.grey.withOpacity(0.2)
             )
@@ -34,6 +34,7 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         keyboardType: inputType,
         minLines: 1,
+        textInputAction: TextInputAction.next,
         obscureText: isPassword,
         style: const TextStyle(
             fontFamily: 'Poppins',

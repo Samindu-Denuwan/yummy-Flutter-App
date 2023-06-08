@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       const MainFoodPage(),
-      SignUpPage(),
+      Center(child: BigText(text: "History")),
       const CartHistory(),
       const AccountPage(),
     ];
