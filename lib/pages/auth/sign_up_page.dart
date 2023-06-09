@@ -61,7 +61,7 @@ class SignUpPage extends StatelessWidget {
             passwordController.clear();
             emailController.clear();
             nameController.clear();
-            Get.toNamed(RouteHelper.getInitial());
+            Get.offAndToNamed(RouteHelper.getInitial());
 
           }else{
             showCustomSnackBar(status.message);

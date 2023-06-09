@@ -13,7 +13,6 @@ class AccountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       decoration: BoxDecoration(
           color: Colors.white,
         boxShadow: [
@@ -33,12 +32,19 @@ class AccountWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-             appIcon,
-              SizedBox(width: 10.w,),
-              bigText,
-            ],
+          Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                 appIcon,
+                  SizedBox(width: 10.w,),
+                  bigText,
+                ],
+              ),
+            ),
           ),
           Row(
             children: [

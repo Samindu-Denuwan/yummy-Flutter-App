@@ -35,6 +35,7 @@ class AuthController extends GetxController implements GetxService{
     Response response =await authRepo.login(phone, password);
     late ResponseModel responseModel;
     if(response.statusCode ==200){
+      print(response.body["token"].toString());
       authRepo.saveUserToken(response.body["token"]);
       responseModel = ResponseModel(true, response.body["token"]);
     }else{

@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       const MainFoodPage(),
       Center(child: BigText(text: "History")),
       const CartHistory(),
-      const AccountPage(),
+       AccountPage(),
     ];
   }
 

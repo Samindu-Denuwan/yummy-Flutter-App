@@ -22,7 +22,7 @@ Future<void> main() async {
         systemNavigationBarColor:Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark));
   }
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

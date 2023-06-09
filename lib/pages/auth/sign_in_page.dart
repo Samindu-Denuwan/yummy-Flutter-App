@@ -41,7 +41,7 @@ class SignInPage extends StatelessWidget {
             showCustomSnackBar("Login is Successful", title: "Success", icon: Icons.check_circle, color: Colors.green);
             phoneController.clear();
             passwordController.clear();
-            Get.toNamed(RouteHelper.getInitial());
+            Get.offAndToNamed(RouteHelper.getInitial());
 
           }else{
             showCustomSnackBar(status.message);

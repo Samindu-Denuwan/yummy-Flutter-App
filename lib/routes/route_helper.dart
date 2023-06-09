@@ -29,7 +29,7 @@ class RouteHelper{
     GetPage(
       name: signIn,
       page: ()=>const SignInPage(),
-      transition: Transition.circularReveal,
+      transition: Transition.fade,
     ),
 
     GetPage(
