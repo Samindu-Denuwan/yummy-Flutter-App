@@ -46,6 +46,9 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_cache_manager: ^3.3.0
   awesome_snackbar_content: ^0.1.1
+  google_maps_flutter: ^2.3.0
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
 
 dev_dependencies:
   flutter_test:

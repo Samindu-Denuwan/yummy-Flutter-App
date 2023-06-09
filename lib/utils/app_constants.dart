@@ -17,9 +17,13 @@ class AppConstants{
   static const String EMPTY_CART = "https://assets4.lottiefiles.com/packages/lf20_qh5z2fdq.json";
   static const String HISTORY_CART = "https://assets1.lottiefiles.com/temp/lf20_Celp8h.json";
 
-  static const String TOKEN = 'yummy';
+  static const String USER_ADDRESS = 'user_address';
+  static const String GEOCODE_URI = '/api/v1/config/geocode-api';
+
+  static const String TOKEN = '';
   static const String PHONE = '';
   static const String PASSWORD = '';
   static const String CART_LIST = 'cart-list';
   static const String CART_HISTORY_LIST = 'cart-history-list';
+
 }

@@ -55,7 +55,7 @@ class AccountPage extends StatelessWidget {
                         size: 45,
                         iconColor: Colors.white,
                         backgroundColor: AppColors.mainColor,),
-                          bigText: BigText(text: userController.userModel.name)),
+                          bigText: BigText(text: userController.userModel!.name)),
                       SizedBox(height: 10.h,),
                       //phone
                       AccountWidget(appIcon: AppIcon(
@@ -65,7 +65,7 @@ class AccountPage extends StatelessWidget {
                         iconColor: Colors.white,
                         backgroundColor: AppColors.yellowColor,),
                           bigText: BigText(
-                            text: userController.userModel.phone,
+                            text: userController.userModel!.phone,
                             fontWeight: FontWeight.w100,
                             size: 16,)),
                       SizedBox(height: 10.h,),
@@ -77,7 +77,7 @@ class AccountPage extends StatelessWidget {
                         iconColor: Colors.white,
                         backgroundColor: AppColors.yellowColor,),
                           bigText: BigText(
-                            text: userController.userModel.email,
+                            text: userController.userModel!.email,
                             fontWeight: FontWeight.w100,
                           size: 16,)),
 
@@ -89,7 +89,7 @@ class AccountPage extends StatelessWidget {
                         size: 45,
                         iconColor: Colors.white,
                         backgroundColor: AppColors.yellowColor,),
-                          bigText: BigText(text: "Set Address",
+                          bigText: BigText(text: "Address",
                             fontWeight: FontWeight.w100,
                             size: 16,)),
                       SizedBox(height: 10.h,),

@@ -244,7 +244,12 @@ class CartPage extends StatelessWidget {
                   GestureDetector(
                     onTap: (){
                   if (Get.find<AuthController>().userLoggedIn()){
-                    cartController.addToHistory();
+                   if(Get.find<LocationController>().addressList.isEmpty){
+                     Get.toNamed(RouteHelper.getAddressPage());
+
+                   }else{
+                     cartController.addToHistory();
+                   }
                   }else{
                     Get.toNamed(RouteHelper.getSignIn());
                   }

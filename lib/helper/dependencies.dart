@@ -25,6 +25,8 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
+
+  Get.lazyPut(() => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   
 
 
@@ -39,4 +41,5 @@ Future<void> init() async {
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => LocationController(locationRepo:Get.find()));
 }
