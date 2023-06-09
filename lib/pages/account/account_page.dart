@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:yummy/base/show_custom_snackbar.dart';
+import 'package:yummy/controllers/controllers.dart';
+import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/account_widget.dart';
 import 'package:yummy/widgets/app_icon.dart';
@@ -81,13 +85,27 @@ class AccountPage extends StatelessWidget {
                         bigText: BigText(text: "Samindu",fontWeight: FontWeight.w200,)),
                     SizedBox(height: 10.h,),
                     //logout
-                    AccountWidget(appIcon: AppIcon(
-                      icon: Icons.logout,
-                      iconSize: 25,
-                      size: 45,
-                      iconColor: Colors.white,
-                      backgroundColor: Colors.red,),
-                        bigText: BigText(text: "Samindu", fontWeight: FontWeight.w200,)),
+                    GestureDetector(
+                      onTap: (){
+                        if(Get.find<AuthController>().userLoggedIn()){
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          print("Logout");
+                          Get.offNamed(RouteHelper.getSignIn());
+                        }else{
+                          showCustomSnackBar("You already logged out", title: "Logging Out");
+                        }
+                        
+                      },
+                      child: AccountWidget(appIcon: AppIcon(
+                        icon: Icons.logout,
+                        iconSize: 25,
+                        size: 45,
+                        iconColor: Colors.white,
+                        backgroundColor: Colors.red,),
+                          bigText: BigText(text: "Logout", fontWeight: FontWeight.w200,)),
+                    ),
                     SizedBox(height: 20.h,),
                   ],
                 ),

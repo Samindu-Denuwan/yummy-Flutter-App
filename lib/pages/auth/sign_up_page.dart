@@ -57,7 +57,12 @@ class SignUpPage extends StatelessWidget {
           if(status.isSuccess){
             print("Success Register");
             showCustomSnackBar("Sign up Successful", title: "Success", icon: Icons.check_circle, color: Colors.green);
+            phoneController.clear();
+            passwordController.clear();
+            emailController.clear();
+            nameController.clear();
             Get.toNamed(RouteHelper.getInitial());
+
           }else{
             showCustomSnackBar(status.message);
           }
@@ -123,7 +128,8 @@ class SignUpPage extends StatelessWidget {
                     textController: passwordController,
                     hintText: "Password",
                     isPassword: true,
-                    inputType: TextInputType.text,
+                    inputAction: TextInputAction.done,
+                    inputType: TextInputType.visiblePassword,
                     icon: Icons.lock),
                 SizedBox(
                   height: 30.h,

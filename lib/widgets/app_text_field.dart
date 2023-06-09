@@ -6,10 +6,12 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
+  final TextInputAction inputAction;
   final TextInputType inputType;
   bool isPassword;
    AppTextField({Key? key,
     this.isPassword = false,
+     this.inputAction = TextInputAction.next,
     required this.textController,
     required this.hintText,
     required this.icon,
@@ -34,7 +36,7 @@ class AppTextField extends StatelessWidget {
       child: TextField(
         keyboardType: inputType,
         minLines: 1,
-        textInputAction: TextInputAction.next,
+        textInputAction: inputAction,
         obscureText: isPassword,
         style: const TextStyle(
             fontFamily: 'Poppins',

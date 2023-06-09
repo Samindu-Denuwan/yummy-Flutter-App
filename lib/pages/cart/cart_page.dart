@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:yummy/controllers/cart_controller.dart';
+import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/controllers/recommended_product_controller.dart';
 import 'package:yummy/routes/route_helper.dart';
@@ -118,8 +120,7 @@ class CartPage extends StatelessWidget {
                                          borderRadius: BorderRadius.circular(20.w),
                                          image: DecorationImage(
                                            fit: BoxFit.cover,
-                                           image: NetworkImage(
-                                               AppConstants.BASE_URL+AppConstants.UPLOAD_URL+_cartList[index].img!),
+                                           image: CachedNetworkImageProvider(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+_cartList[index].img!),
                                          ),
                                        )
                                    ),
@@ -242,7 +243,12 @@ class CartPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                        cartController.addToHistory();
+                  if (Get.find<AuthController>().userLoggedIn()){
+                    cartController.addToHistory();
+                  }else{
+                    Get.toNamed(RouteHelper.getSignIn());
+                  }
+
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.w),

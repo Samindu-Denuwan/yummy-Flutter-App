@@ -39,7 +39,10 @@ class SignInPage extends StatelessWidget {
           if(status.isSuccess){
             print("Success Login");
             showCustomSnackBar("Login is Successful", title: "Success", icon: Icons.check_circle, color: Colors.green);
+            phoneController.clear();
+            passwordController.clear();
             Get.toNamed(RouteHelper.getInitial());
+
           }else{
             showCustomSnackBar(status.message);
           }
@@ -100,7 +103,8 @@ class SignInPage extends StatelessWidget {
                     textController: passwordController,
                     hintText: "Password",
                     isPassword: true,
-                    inputType: TextInputType.text,
+                    inputAction: TextInputAction.done,
+                    inputType: TextInputType.visiblePassword,
                     icon: Icons.lock),
                 SizedBox(
                   height: 30.h,

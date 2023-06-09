@@ -7,6 +7,7 @@ import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:yummy/pages/pages.dart';
+import 'package:yummy/routes/route_helper.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -44,9 +45,9 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 useMaterial3: true,
               ),
-              home: SignInPage(),
-              // initialRoute: RouteHelper.getSplash(),
-              // getPages: RouteHelper.routes,
+              //home: SignInPage(),
+              initialRoute: RouteHelper.getSplash(),
+              getPages: RouteHelper.routes,
             );
           },);
 

@@ -3,6 +3,7 @@ import 'package:yummy/pages/pages.dart';
 
 class RouteHelper{
   static const String splashScreen = "/splash-screen";
+  static const String signIn = "/sign-in";
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
@@ -11,6 +12,7 @@ class RouteHelper{
 
 
   static String getSplash ()=> '$splashScreen';
+  static String getSignIn ()=> '$signIn';
   static String getInitial ()=> '$initial';
   static String getPopularFood (int pageId, String page)=> '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood (int pageId, String page)=> '$recommendedFood?pageId=$pageId&page=$page';
@@ -22,6 +24,12 @@ class RouteHelper{
       name: splashScreen,
       page: ()=>const SplashScreen(),
       transition: Transition.fadeIn,
+    ),
+
+    GetPage(
+      name: signIn,
+      page: ()=>const SignInPage(),
+      transition: Transition.circularReveal,
     ),
 
     GetPage(
