@@ -83,15 +83,40 @@ class AccountPage extends StatelessWidget {
 
                       SizedBox(height: 10.h,),
                       //address
-                      AccountWidget(appIcon: AppIcon(
-                        icon: Icons.location_on,
-                        iconSize: 25,
-                        size: 45,
-                        iconColor: Colors.white,
-                        backgroundColor: AppColors.yellowColor,),
-                          bigText: BigText(text: "Address",
-                            fontWeight: FontWeight.w100,
-                            size: 16,)),
+                      GetBuilder<LocationController>(
+                        builder: (locationController) {
+                        if(_userLoggedIn&& locationController.addressList.isEmpty){
+                          return GestureDetector(
+                            onTap: (){
+                              Get.offNamed(RouteHelper.getAddressPage());
+                            },
+                            child: AccountWidget(appIcon: AppIcon(
+                              icon: Icons.location_on,
+                              iconSize: 25,
+                              size: 45,
+                              iconColor: Colors.white,
+                              backgroundColor: AppColors.yellowColor,),
+                                bigText: BigText(text: "Fill in your Address",
+                                  fontWeight: FontWeight.w100,
+                                  size: 16,)),
+                          );
+                        }else{
+                        return  GestureDetector(
+                            onTap: (){
+                              Get.toNamed(RouteHelper.getAddressPage());
+                            },
+                            child: AccountWidget(appIcon: AppIcon(
+                              icon: Icons.location_on,
+                              iconSize: 25,
+                              size: 45,
+                              iconColor: Colors.white,
+                              backgroundColor: AppColors.yellowColor,),
+                                bigText: BigText(text: "Address",
+                                  fontWeight: FontWeight.w100,
+                                  size: 16,)),
+                          );
+                        }
+                      },),
                       SizedBox(height: 10.h,),
                       //message
                       AccountWidget(appIcon: AppIcon(
