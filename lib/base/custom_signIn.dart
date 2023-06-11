@@ -14,13 +14,14 @@ class CustomSignIn extends StatelessWidget {
     return Center(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.w),
-        height: MediaQuery.of(context).size.height/2,
+        height: MediaQuery.of(context).size.height/1.5,
         width: double.maxFinite,
         child: Column(
           children: [
             Lottie.network("https://assets8.lottiefiles.com/packages/lf20_q5evpnci.json",
               fit: BoxFit.cover,
             ),
+            SizedBox(height: 10.h,),
             GestureDetector(
               onTap: (){
                 Get.toNamed(RouteHelper.getSignIn());

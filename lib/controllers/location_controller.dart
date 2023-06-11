@@ -103,10 +103,12 @@ class LocationController extends GetxController implements GetxService {
 
   AddressModel getUserAddress() {
     late AddressModel _addressModel;
-    _getAddress = jsonDecode(locationRepo.getUserAddress());
+      _getAddress = jsonDecode(locationRepo.getUserAddress());
     try {
-      _addressModel =
-          AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+        _addressModel =
+            AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+        print("addressModel.......:$_addressModel");
+
     } catch (e) {
       print(e.toString());
     }
@@ -128,7 +130,12 @@ class LocationController extends GetxController implements GetxService {
       String message = response.body["message"];
       responseModel = ResponseModel(true, message);
      await saveUserAddress(addressModel);
+     print("..................... Save the Address..........");
     } else {
+      showCustomSnackBar(response.statusText!,
+          title: "ERROR SAVING",
+          isError: true,
+      );
       print("Couldn't Save the Address");
       responseModel = ResponseModel(false, response.statusText!);
     }
@@ -155,5 +162,16 @@ class LocationController extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel) async {
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  void clearAddressList(){
+    _addressList =[];
+    _allAddressList=[];
+    update();
+  }
+
+ String getUserAddressFromLocalStorage() {
+    return locationRepo.getUserAddress();
+
   }
 }

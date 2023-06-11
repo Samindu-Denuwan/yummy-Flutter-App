@@ -33,7 +33,7 @@ class LocationRepo{
 
   Future<bool> saveUserAddress(String address) async{
     apiClient.updateHeader(sharedPreferences.getString(AppConstants.TOKEN)!);
-    return await sharedPreferences.setString(AppConstants.ADD_USER_ADDRESS, address);
+    return await sharedPreferences.setString(AppConstants.USER_ADDRESS, address);
   }
 
 

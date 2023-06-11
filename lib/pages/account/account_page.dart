@@ -5,6 +5,7 @@ import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/base/custom_signIn.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
+import 'package:yummy/models/address_model.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/account_widget.dart';
@@ -20,6 +21,8 @@ class AccountPage extends StatelessWidget {
     bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
     if(_userLoggedIn){
       Get.find<UserController>().getUserInfo();
+      Get.find<LocationController>().getAddressList();
+      print("user loggin in");
     }
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +91,7 @@ class AccountPage extends StatelessWidget {
                         if(_userLoggedIn&& locationController.addressList.isEmpty){
                           return GestureDetector(
                             onTap: (){
-                              Get.offNamed(RouteHelper.getAddressPage());
+                              Get.toNamed(RouteHelper.getAddressPage());
                             },
                             child: AccountWidget(appIcon: AppIcon(
                               icon: Icons.location_on,
@@ -111,7 +114,7 @@ class AccountPage extends StatelessWidget {
                               size: 45,
                               iconColor: Colors.white,
                               backgroundColor: AppColors.yellowColor,),
-                                bigText: BigText(text: "Address",
+                                bigText: BigText(text:  locationController.addressList[0].address,
                                   fontWeight: FontWeight.w100,
                                   size: 16,)),
                           );
@@ -119,15 +122,20 @@ class AccountPage extends StatelessWidget {
                       },),
                       SizedBox(height: 10.h,),
                       //message
-                      AccountWidget(appIcon: AppIcon(
-                        icon: Icons.message,
-                        iconSize: 25,
-                        size: 45,
-                        iconColor: Colors.white,
-                        backgroundColor: Colors.blue,),
-                          bigText: BigText(text: "Messages",
-                            fontWeight: FontWeight.w100,
-                            size: 16,)),
+                      GestureDetector(
+                        onTap: (){
+                          print("localStorage address:.........."+ Get.find<LocationController>().saveUserAddress(Get.find<LocationController>().addressList.last).toString());
+                        },
+                        child: AccountWidget(appIcon: AppIcon(
+                          icon: Icons.message,
+                          iconSize: 25,
+                          size: 45,
+                          iconColor: Colors.white,
+                          backgroundColor: Colors.blue,),
+                            bigText: BigText(text: "Messages",
+                              fontWeight: FontWeight.w100,
+                              size: 16,)),
+                      ),
                       SizedBox(height: 10.h,),
                       //logout
                       GestureDetector(
@@ -136,6 +144,7 @@ class AccountPage extends StatelessWidget {
                             Get.find<AuthController>().clearSharedData();
                             Get.find<CartController>().clear();
                             Get.find<CartController>().clearCartHistory();
+                            Get.find<LocationController>().clearAddressList();
                             print("Logout");
                             Get.offAndToNamed(RouteHelper.getSignIn());
                           }else{
