@@ -4,12 +4,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yummy/base/btn_custom.dart';
 import 'package:yummy/base/circular_loader.dart';
-import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/generated/assets.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
-import 'package:yummy/widgets/app_icon.dart';
 import 'package:yummy/widgets/big_text.dart';
 import 'package:yummy/widgets/custom_btn.dart';
 
@@ -57,98 +55,93 @@ class _PickAddressMapState extends State<PickAddressMap> {
   Widget build(BuildContext context) {
     return GetBuilder<LocationController>(builder: (locationController) {
       return Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: SizedBox(
-              width: double.maxFinite,
-              child: Stack(
-                children: [
-                  GoogleMap(
-                    // CameraPosition(
-                    //     target: _initialPosition,zoom: 17)
-                    initialCameraPosition: _cameraPosition,
-                    zoomControlsEnabled: false,
-                    onCameraMove: (CameraPosition cameraPosition){
-                      _cameraPosition = cameraPosition;
-                    },
-                    onCameraIdle: (){
-                      Get.find<LocationController>().updatePosition(
-                          _cameraPosition, false);
-                    },
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: true,
+        body: Center(
+          child: SizedBox(
+            width: double.maxFinite,
+            child: Stack(
+              children: [
+                GoogleMap(
+                 padding: EdgeInsets.only(top: 150.h),
+                  initialCameraPosition:CameraPosition(
+                      target: _initialPosition, zoom: 17),
+                  zoomControlsEnabled: false,
+                  onCameraMove: (CameraPosition cameraPosition){
+                    _cameraPosition = cameraPosition;
+                  },
+                  onCameraIdle: (){
+                    Get.find<LocationController>().updatePosition(
+                        _cameraPosition, false);
+                  },
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
 
-                  ),
-                  Center(
-                    child: !locationController.loading?Image.asset(Assets.imagePin,
-                    height: 50.h, width: 50.w,): CircularLoader(),
-                  ),
-                  Positioned(
-                    top: 60.h,
-                      left: 20.w,
-                      right: 20.w,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                          color: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(10.w),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.location_on, color: Colors.white,size: 25.sp,),
-                            SizedBox(width: 10.w,),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                scrollDirection: Axis.horizontal,
-                                  child: BigText(text: '${locationController.pickPlacemark.name?? ""}', color: Colors.white, size: 16.sp,)),
-                            ),
-                          ],
-                        ),
-
-                      )),
-                  Positioned(
-                    bottom: 100.h,
+                ),
+                Center(
+                  child: !locationController.loading?Image.asset(Assets.imagePin,
+                  height: 50.h, width: 50.w,): const CircularLoader(),
+                ),
+                Positioned(
+                  top: 70.h,
                     left: 20.w,
                     right: 20.w,
-                      child: InkWell(
-                        onTap: locationController.loading? null: (){
-                            if(locationController.pickPosition.latitude!=0 && locationController.pickPlacemark.name!= null){
-                              if(widget.fromAddress){
-                                if(widget.googleMapController!=null){
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(10.w),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.white,size: 25.sp,),
+                          SizedBox(width: 10.w,),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              scrollDirection: Axis.horizontal,
+                                child: BigText(text: '${locationController.pickPlacemark.name?? ""}', color: Colors.white, size: 16.sp,)),
+                          ),
+                        ],
+                      ),
 
-                                  widget.googleMapController!.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
-                                      target: LatLng(locationController.pickPosition.latitude,
-                                          locationController.pickPosition.longitude)
-                                  ) ));
-                                  locationController.setAddAddressData();
+                    )),
+                Positioned(
+                  bottom: 80.h,
+                  left: 20.w,
+                  right: 20.w,
+                    child: locationController.isLoading? const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.mainColor,
+                      ),): CustomBtn(
+                      radius: 30,
+                      width: 200,
+                      height:60,
+                      bigText: BigText(text:locationController.inZone?widget.fromAddress? "Set Address": "Set Location":"Not Available", color: Colors.white,),
+                      onPressed: (locationController.buttonDisabled||locationController.loading)? null: (){
+                        if(locationController.pickPosition.latitude!=0 && locationController.pickPlacemark.name!= null){
+                          if(widget.fromAddress){
+                            if(widget.googleMapController!=null){
 
-                                  print("Tapped");
-                                }
-                                Get.back();
-                                showCustomSnackBar("Added Successfully",
-                                    title: "Address",
-                                    isError: false,
-                                    icon: Icons.check_circle,
-                                    color: Colors.green);
-
-                              }
-
+                              widget.googleMapController!.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
+                                  target: LatLng(locationController.pickPosition.latitude,
+                                      locationController.pickPosition.longitude)
+                              ) ));
+                              locationController.setAddAddressData();
+                              print("................"+locationController.pickPlacemark.name!);
 
                             }
-                        },
-                        child: BtnCustom(
-                            color: AppColors.mainColor,
-                            bigText: BigText(text: "Set Location", color: Colors.white,),
-                            margin: EdgeInsets.symmetric(horizontal: 50.w)),
-                      )
-                  ),
-                ],
-              ),
+                            Get.back();
+                            //Get.offNamed(RouteHelper.getAddressPage());
+                          }
+
+                        }
+                      },
+                    ),
+
+                ),
+              ],
             ),
           ),
-
         ),
 
       );

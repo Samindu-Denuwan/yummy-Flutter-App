@@ -5,7 +5,7 @@ import 'package:yummy/widgets/big_text.dart';
 
 class CustomBtn extends StatelessWidget {
   final BigText bigText;
-  final VoidCallbackAction? onPressed;
+  final VoidCallback? onPressed;
   final bool transparent;
   final  EdgeInsets? margin;
   final double? height;
@@ -27,21 +27,21 @@ class CustomBtn extends StatelessWidget {
       backgroundColor: onPressed==null?Theme.of(context).disabledColor: transparent
           ?Colors.transparent: AppColors.mainColor,
       minimumSize: Size(
-          width!,
-          height!),
+          width!.w,
+          height!.h),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(radius.w),
 
       )
 
     );
     return Center(
       child: SizedBox(
-        width: width,
-        height: height,
+        width: width!.w,
+        height: height!.h,
         child: TextButton(
-            onPressed: (){},
+            onPressed: onPressed,
             style: buttonStyle,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

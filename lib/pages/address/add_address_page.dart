@@ -51,7 +51,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
               double.parse(
                   Get.find<LocationController>().getAddress["latitude"]),
               double.parse(
-                  Get.find<LocationController>().getAddress["longitude"])));
+                  Get.find<LocationController>().getAddress["longitude"])), zoom: 17);
       print("Lattitude......"+Get.find<LocationController>().getAddress["latitude"]);
       _initialPosition = LatLng(
           double.parse(Get.find<LocationController>().getAddress["latitude"]),
@@ -113,8 +113,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     child: Stack(
                       children: [
                         GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                              target: _initialPosition, zoom: 17),
+                          initialCameraPosition: _cameraPosition,
                           zoomControlsEnabled: false,
                           compassEnabled: false,
                           indoorViewEnabled: true,

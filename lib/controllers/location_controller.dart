@@ -38,6 +38,20 @@ class LocationController extends GetxController implements GetxService {
   bool get loading => _loading;
   Position get position => _position;
   Position get pickPosition => _pickPosition;
+
+  //for service zone
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  //user is in the service zone or not
+  bool _inZone = false;
+  bool get  inZone => _inZone;
+
+  bool _buttonDisabled = true;
+  bool get buttonDisabled =>_buttonDisabled;
+
+
+
+
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
@@ -59,8 +73,8 @@ class LocationController extends GetxController implements GetxService {
               heading: 1,
               speed: 1,
               speedAccuracy: 1);
-          _loading = false;
-          update();
+
+
         } else {
           _pickPosition = Position(
               latitude: position.target.latitude,
@@ -71,25 +85,32 @@ class LocationController extends GetxController implements GetxService {
               heading: 1,
               speed: 1,
               speedAccuracy: 1);
-          _loading = false;
-          update();
         }
+
+        ResponseModel _responseModel = await getZone(position.target.latitude.toString(),
+            position.target.longitude.toString(), false);
+       _buttonDisabled =!_responseModel.isSuccess;
+
+
         if (_changeAddress) {
           String _address = await getAddressFromGeocode(
-            LatLng(position.target.latitude, position.target.longitude),
+            LatLng(
+                position.target.latitude,
+                position.target.longitude),
           );
-          fromAddress
-              ? _placemark = Placemark(name: _address)
+          fromAddress? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
           //  print("Street...."+_placemark.street.toString());
-          _loading = false;
-          update();
         }
       } catch (e) {
-        print(e);
+        print(e.toString());
       }
+      _loading = false;
+      update();
     }else{
       _updateAddressData =true;
+
+
     }
   }
 
@@ -190,6 +211,39 @@ class LocationController extends GetxController implements GetxService {
     _placemark = _pickPlacemark;
     _updateAddressData = false;
     update();
+  }
+
+ Future<ResponseModel> getZone(String lat, String lng, bool markerLoad)async{
+   late ResponseModel _responseModel;
+   if(markerLoad){
+     _loading = true;
+   }else{
+     _isLoading = true;
+   }
+   update();
+  Response response = await locationRepo.getZone(
+      lat, lng);
+  if(response.statusCode ==200){
+    _inZone = true;
+    _responseModel = ResponseModel(
+        true, response.body["zone_id"].toString());
+  }else{
+    _inZone = false;
+    _responseModel = ResponseModel(
+        true, response.statusText!);
+    print("Zone statues..............."+response.statusText!.toString());
+  }
+   if(markerLoad){
+     _loading = false;
+   }else{
+     _isLoading = false;
+   }
+  print("Zone id..............."+response.statusCode.toString());
+   update();
+    return _responseModel;
+
+
+
   }
 
 }
