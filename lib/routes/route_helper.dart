@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:yummy/pages/address/add_address_page.dart';
 import 'package:yummy/pages/pages.dart';
 
 class RouteHelper{
@@ -10,6 +9,7 @@ class RouteHelper{
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
   static const String addAddress = "/add-address";
+  static const String pickAddress = "/pick-address";
 
 
 
@@ -20,6 +20,7 @@ class RouteHelper{
   static String getRecommendedFood (int pageId, String page)=> '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage()=> '$cartPage';
   static String getAddressPage()=> '$addAddress';
+  static String getPickAddressPage()=> '$pickAddress';
 
 
   static List<GetPage> routes =[
@@ -71,6 +72,14 @@ class RouteHelper{
       name: addAddress,
       page: ()=>const AddAddressPage(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: pickAddress,
+      page: (){
+      PickAddressMap _pickAddress  = Get.arguments;
+      return _pickAddress;
+      },
+      transition: Transition.fade,
     ),
   ];
 }

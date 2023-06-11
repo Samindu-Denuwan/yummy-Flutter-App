@@ -51,24 +51,28 @@ class LocationController extends GetxController implements GetxService {
       try {
         if (fromAddress) {
           _position = Position(
-              longitude: position.target.latitude,
-              latitude: position.target.longitude,
+              latitude: position.target.latitude,
+              longitude: position.target.longitude,
               timestamp: DateTime.now(),
               accuracy: 1,
               altitude: 1,
               heading: 1,
               speed: 1,
               speedAccuracy: 1);
+          _loading = false;
+          update();
         } else {
           _pickPosition = Position(
-              longitude: position.target.latitude,
-              latitude: position.target.longitude,
+              latitude: position.target.latitude,
+              longitude: position.target.longitude,
               timestamp: DateTime.now(),
               accuracy: 1,
               altitude: 1,
               heading: 1,
               speed: 1,
               speedAccuracy: 1);
+          _loading = false;
+          update();
         }
         if (_changeAddress) {
           String _address = await getAddressFromGeocode(
@@ -78,10 +82,14 @@ class LocationController extends GetxController implements GetxService {
               ? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
           //  print("Street...."+_placemark.street.toString());
+          _loading = false;
+          update();
         }
       } catch (e) {
         print(e);
       }
+    }else{
+      _updateAddressData =true;
     }
   }
 
@@ -103,6 +111,7 @@ class LocationController extends GetxController implements GetxService {
 
   AddressModel getUserAddress() {
     late AddressModel _addressModel;
+
       _getAddress = jsonDecode(locationRepo.getUserAddress());
     try {
         _addressModel =
@@ -139,6 +148,7 @@ class LocationController extends GetxController implements GetxService {
       print("Couldn't Save the Address");
       responseModel = ResponseModel(false, response.statusText!);
     }
+    _loading = false;
     update();
     return responseModel;
   }
@@ -172,6 +182,14 @@ class LocationController extends GetxController implements GetxService {
 
  String getUserAddressFromLocalStorage() {
     return locationRepo.getUserAddress();
-
   }
+
+
+ void setAddAddressData(){
+    _position = _pickPosition;
+    _placemark = _pickPlacemark;
+    _updateAddressData = false;
+    update();
+  }
+
 }

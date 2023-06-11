@@ -6,6 +6,7 @@ import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/models/address_model.dart';
 import 'package:yummy/models/user_model.dart';
+import 'package:yummy/pages/address/pick_address_map.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/app_text_field.dart';
 import 'package:yummy/widgets/big_text.dart';
@@ -51,6 +52,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   Get.find<LocationController>().getAddress["latitude"]),
               double.parse(
                   Get.find<LocationController>().getAddress["longitude"])));
+      print("Lattitude......"+Get.find<LocationController>().getAddress["latitude"]);
       _initialPosition = LatLng(
           double.parse(Get.find<LocationController>().getAddress["latitude"]),
           double.parse(Get.find<LocationController>().getAddress["longitude"]));
@@ -83,6 +85,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
             if (Get.find<LocationController>().addressList.isNotEmpty) {
               print("Address list..."+Get.find<LocationController>().addressList.toString());
               _addressController.text =Get.find<LocationController>().getUserAddress().address;
+              print("Address New........"+_addressController.text);
             }
           }
           return GetBuilder<LocationController>(builder: (locationController) {
@@ -91,7 +94,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 '${locationController.placemark.locality ?? ""}'
                 '${locationController.placemark.postalCode ?? ""}'
                 '${locationController.placemark.country ?? ""}';
-            print("Address in my view:...." + _addressController.text);
+             print("Address in my view:...." + _addressController.text);
             return SingleChildScrollView(
               padding: EdgeInsets.only(bottom: 10.h),
               physics: const BouncingScrollPhysics(),
@@ -131,6 +134,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                 .isEmpty) {
                               // locationController.getCurrentLocation(true, mapController: controller);
                             }
+
+                          },
+                          onTap: (latLng){
+                              Get.toNamed(RouteHelper.getPickAddressPage(),
+                              arguments: PickAddressMap(
+                                fromAddress: true,
+                                fromSignUp: false,
+                                googleMapController: locationController.mapController,
+                              ));
                           },
                         )
                       ],

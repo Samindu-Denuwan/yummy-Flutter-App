@@ -2,8 +2,8 @@
 class Assets {
   Assets._();
 
-  static  String animationEmptyCart = 'assets/animation/empty_cart.json';
-  static  String animationLoading = 'assets/animation/loading.json';
+  static const String animationEmptyCart = 'assets/animation/empty_cart.json';
+  static const String animationLoading = 'assets/animation/loading.json';
   static const String fontPoppinsBold = 'assets/font/Poppins-Bold.ttf';
   static const String fontPoppinsMedium = 'assets/font/Poppins-Medium.ttf';
   static const String fontPoppinsRegular = 'assets/font/Poppins-Regular.ttf';
@@ -55,6 +55,7 @@ class Assets {
   static const String imageOnboard2 = 'assets/image/onboard_2.png';
   static const String imageOnboard3 = 'assets/image/onboard_3.png';
   static const String imagePickMarker = 'assets/image/pick_marker.png';
+  static const String imagePin = 'assets/image/pin.png';
   static const String imagePlaceholder = 'assets/image/placeholder.jpg';
   static const String imagePolicy = 'assets/image/policy.png';
   static const String imageProfile = 'assets/image/profile.png';
