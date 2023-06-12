@@ -6,8 +6,10 @@ import 'package:yummy/base/btn_custom.dart';
 import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/generated/assets.dart';
+import 'package:yummy/pages/address/widgets/search_location_dialog.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
+import 'package:yummy/widgets/app_icon.dart';
 import 'package:yummy/widgets/big_text.dart';
 import 'package:yummy/widgets/custom_btn.dart';
 
@@ -72,6 +74,9 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     Get.find<LocationController>().updatePosition(
                         _cameraPosition, false);
                   },
+                  onMapCreated: (GoogleMapController mapController){
+                   _mapController = mapController;
+                  },
                   myLocationEnabled: true,
                   myLocationButtonEnabled: true,
 
@@ -84,26 +89,31 @@ class _PickAddressMapState extends State<PickAddressMap> {
                   top: 70.h,
                     left: 20.w,
                     right: 20.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      height: 50.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.mainColor,
-                        borderRadius: BorderRadius.circular(10.w),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.location_on, color: Colors.white,size: 25.sp,),
-                          SizedBox(width: 10.w,),
-                          Expanded(
-                            child: SingleChildScrollView(
-                              padding: EdgeInsets.symmetric(horizontal: 5.w),
-                              scrollDirection: Axis.horizontal,
-                                child: BigText(text: '${locationController.pickPlacemark.name?? ""}', color: Colors.white, size: 16.sp,)),
-                          ),
-                        ],
-                      ),
+                    child: InkWell(
+                      onTap:()=>Get.dialog(LocationDialog(mapController: _mapController)),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(10.w),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.location_on, color: Colors.white,size: 25.sp,),
+                            Expanded(
+                              child: SingleChildScrollView(
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                scrollDirection: Axis.horizontal,
+                                  child: BigText(text: '${locationController.pickPlacemark.name?? ""}', color: Colors.white, size: 16.sp,)),
+                            ),
+                            SizedBox(width: 8.w,),
+                           Icon(Icons.search, color: AppColors.yellowColor,size: 25.sp,),
 
+                          ],
+                        ),
+
+                      ),
                     )),
                 Positioned(
                   bottom: 80.h,
@@ -131,7 +141,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
 
                             }
                             Get.back();
-                            //Get.offNamed(RouteHelper.getAddressPage());
+                           // Get.offNamed(RouteHelper.getAddressPage());
                           }
 
                         }

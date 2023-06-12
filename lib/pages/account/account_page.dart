@@ -5,7 +5,6 @@ import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/base/custom_signIn.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
-import 'package:yummy/models/address_model.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/account_widget.dart';
@@ -58,7 +57,7 @@ class AccountPage extends StatelessWidget {
                         size: 45,
                         iconColor: Colors.white,
                         backgroundColor: AppColors.mainColor,),
-                          bigText: BigText(text: userController.userModel!.name)),
+                          bigText: BigText(text: userController.userModel!= null? userController.userModel!.name: "Your Name")),
                       SizedBox(height: 10.h,),
                       //phone
                       AccountWidget(appIcon: AppIcon(
@@ -68,7 +67,7 @@ class AccountPage extends StatelessWidget {
                         iconColor: Colors.white,
                         backgroundColor: AppColors.yellowColor,),
                           bigText: BigText(
-                            text: userController.userModel!.phone,
+                            text: userController.userModel!= null?  userController.userModel!.phone: "Your Phone Number",
                             fontWeight: FontWeight.w100,
                             size: 16,)),
                       SizedBox(height: 10.h,),
@@ -80,7 +79,7 @@ class AccountPage extends StatelessWidget {
                         iconColor: Colors.white,
                         backgroundColor: AppColors.yellowColor,),
                           bigText: BigText(
-                            text: userController.userModel!.email,
+                            text:userController.userModel!= null?  userController.userModel!.email: "Your Email",
                             fontWeight: FontWeight.w100,
                           size: 16,)),
 
@@ -92,6 +91,7 @@ class AccountPage extends StatelessWidget {
                           return GestureDetector(
                             onTap: (){
                               Get.toNamed(RouteHelper.getAddressPage());
+
                             },
                             child: AccountWidget(appIcon: AppIcon(
                               icon: Icons.location_on,
@@ -107,6 +107,7 @@ class AccountPage extends StatelessWidget {
                         return  GestureDetector(
                             onTap: (){
                               Get.toNamed(RouteHelper.getAddressPage());
+
                             },
                             child: AccountWidget(appIcon: AppIcon(
                               icon: Icons.location_on,

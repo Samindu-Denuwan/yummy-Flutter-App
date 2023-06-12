@@ -1,13 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
+import 'package:yummy/data/api/api_checker.dart';
 import 'package:yummy/data/repository/repository.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:yummy/models/address_model.dart';
 import 'package:yummy/models/response_model.dart';
+import 'package:google_maps_webservice/src/places.dart';
 
 class LocationController extends GetxController implements GetxService {
   LocationRepo locationRepo;
@@ -46,8 +49,11 @@ class LocationController extends GetxController implements GetxService {
   bool _inZone = false;
   bool get  inZone => _inZone;
 
-  bool _buttonDisabled = true;
+  bool _buttonDisabled = false;
   bool get buttonDisabled =>_buttonDisabled;
+
+  //save the google map suggestion
+  List<Prediction> _predictionList = [];
 
 
 
@@ -85,6 +91,8 @@ class LocationController extends GetxController implements GetxService {
               heading: 1,
               speed: 1,
               speedAccuracy: 1);
+
+
         }
 
         ResponseModel _responseModel = await getZone(position.target.latitude.toString(),
@@ -101,6 +109,8 @@ class LocationController extends GetxController implements GetxService {
           fromAddress? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
           //  print("Street...."+_placemark.street.toString());
+        }else{
+          _changeAddress = true;
         }
       } catch (e) {
         print(e.toString());
@@ -210,6 +220,8 @@ class LocationController extends GetxController implements GetxService {
     _position = _pickPosition;
     _placemark = _pickPlacemark;
     _updateAddressData = false;
+    _changeAddress = false;
+
     update();
   }
 
@@ -228,7 +240,10 @@ class LocationController extends GetxController implements GetxService {
     _responseModel = ResponseModel(
         true, response.body["zone_id"].toString());
   }else{
-    _inZone = false;
+    // _inZone = false;
+    // _responseModel = ResponseModel(
+    //     false, response.statusText!);
+    _inZone = true;
     _responseModel = ResponseModel(
         true, response.statusText!);
     print("Zone statues..............."+response.statusText!.toString());
@@ -242,8 +257,50 @@ class LocationController extends GetxController implements GetxService {
    update();
     return _responseModel;
 
+  }
+
+Future<List<Prediction>>searchLocation(BuildContext context, String text) async {
+    if(text.isNotEmpty){
+      Response response = await locationRepo.searchLocation(text);
+      if(response.statusCode ==200 && response.body['status'] =='OK'){
+              _predictionList = [];
+              response.body['predictions'].forEach((prediction)
+              =>_predictionList.add(Prediction.fromJson(prediction)));
+      }else{
+          ApiChecker.checkApi(response);
+      }
+    }
+
+    return _predictionList;
+
+}
 
 
+setLocation(String placeID, String address, GoogleMapController mapController) async {
+    _loading = true;
+    update();
+    PlacesDetailsResponse detail;
+    Response response = await locationRepo.setLocation(placeID);
+    detail = PlacesDetailsResponse.fromJson(response.body);
+    _pickPosition = Position(
+        latitude: detail.result.geometry!.location.lat,
+        longitude: detail.result.geometry!.location.lng,
+        timestamp: DateTime.now(),
+        accuracy: 1,
+        altitude: 1,
+        heading: 1,
+        speed: 1,
+        speedAccuracy: 1);
+
+    _pickPlacemark = Placemark(name: address);
+    _changeAddress = false;
+    if(!mapController.isNull){
+      mapController.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(detail.result.geometry!.location.lat, detail.result.geometry!.location.lng),zoom: 17)
+      ),);
+    }
+    _loading = false;
+    update();
   }
 
 }

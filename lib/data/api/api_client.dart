@@ -30,6 +30,7 @@ class ApiClient extends GetConnect implements GetxService{
     try{
      Response response = await get(uri,
      headers:  headers?? _mainHeaders);
+     print(response.body.toString());
      return response;
     }catch(e){
       return Response(statusCode: 1, statusText: e.toString());

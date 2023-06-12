@@ -12,7 +12,7 @@ class CustomBtn extends StatelessWidget {
   final double? width;
   final double radius;
   final IconData? icon;
-  CustomBtn({Key? key,
+  const CustomBtn({Key? key,
     this.onPressed,
     this.transparent= false,
     this.margin ,

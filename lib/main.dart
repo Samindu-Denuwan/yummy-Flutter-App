@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:flutter/services.dart';
-import 'package:yummy/pages/pages.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +24,17 @@ Future<void> main() async {
         systemNavigationBarDividerColor: Colors.transparent,
         systemNavigationBarColor:Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark));
+   //   await Geolocator.requestPermission();
+        enableLocation();
+
+
+
+
   }
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -58,6 +68,29 @@ class MyApp extends StatelessWidget {
 
     },);
   }
+}
+
+Future<void>enableLocation() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    return Future.error('Location services are disabled.');
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permissions are denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.');
+  }
+
 }
 
 

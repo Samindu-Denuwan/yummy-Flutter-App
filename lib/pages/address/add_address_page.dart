@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/models/address_model.dart';
 import 'package:yummy/models/user_model.dart';
 import 'package:yummy/pages/address/pick_address_map.dart';
@@ -61,6 +64,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,37 +116,47 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             Border.all(width: 2, color: AppColors.mainColor)),
                     child: Stack(
                       children: [
-                        GoogleMap(
-                          initialCameraPosition: _cameraPosition,
-                          zoomControlsEnabled: false,
-                          compassEnabled: false,
-                          indoorViewEnabled: true,
-                          mapToolbarEnabled: false,
-                          myLocationEnabled: true,
-                          myLocationButtonEnabled: true,
-                          onCameraIdle: () {
-                            locationController.updatePosition(
-                                _cameraPosition, true);
-                          },
-                          onCameraMove: ((position) =>
-                              _cameraPosition = position),
-                          onMapCreated: (GoogleMapController controller) {
-                            locationController.setMapController(controller);
-                            if (Get.find<LocationController>()
-                                .addressList
-                                .isEmpty) {
-                              // locationController.getCurrentLocation(true, mapController: controller);
-                            }
+                        Stack(
+                          children: [
+                            GoogleMap(
+                              initialCameraPosition: CameraPosition(target: _initialPosition, zoom: 17),
+                              zoomControlsEnabled: false,
+                              compassEnabled: false,
+                              indoorViewEnabled: true,
+                              mapToolbarEnabled: false,
+                              myLocationEnabled: true,
+                              myLocationButtonEnabled: true,
+                              onCameraIdle: () {
+                                locationController.updatePosition(
+                                    _cameraPosition, true,);
+                              },
+                              onCameraMove: ((position) =>
+                                  _cameraPosition = position),
+                              onMapCreated: (GoogleMapController controller) {
+                                locationController.setMapController(controller);
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
+                                  // locationController.getCurrentLocation(true, mapController: controller);
+                                }
 
-                          },
-                          onTap: (latLng){
-                              Get.toNamed(RouteHelper.getPickAddressPage(),
-                              arguments: PickAddressMap(
-                                fromAddress: true,
-                                fromSignUp: false,
-                                googleMapController: locationController.mapController,
-                              ));
-                          },
+                              },
+                              onTap: (latLng){
+                                  Get.toNamed(RouteHelper.getPickAddressPage(),
+                                  arguments: PickAddressMap(
+                                    fromAddress: true,
+                                    fromSignUp: false,
+                                    googleMapController: locationController.mapController,
+                                  ));
+                              },
+                            ),
+                            Center(
+                              child: !locationController.loading?Image.asset(Assets.imagePin,
+                                height: 30.h, width: 30.w,): const CircularProgressIndicator(
+                                color: AppColors.mainColor,
+                              ),
+                            ),
+                          ],
                         )
                       ],
                     ),
