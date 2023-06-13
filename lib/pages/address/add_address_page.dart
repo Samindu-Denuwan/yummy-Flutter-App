@@ -214,11 +214,15 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  AppTextField(
+                  if (!locationController.loading) AppTextField(
                       textController: _addressController,
                       hintText: "Your Address",
                       icon: Icons.location_on,
-                      inputType: TextInputType.text),
+                      inputType: TextInputType.text) else const Center(
+                        child: CircularProgressIndicator(
+                    color: AppColors.mainColor,
+                  ),
+                      ),
                   SizedBox(
                     height: 20.h,
                   ),

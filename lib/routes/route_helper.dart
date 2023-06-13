@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:yummy/models/order_model.dart';
 import 'package:yummy/pages/pages.dart';
 
 class RouteHelper{
@@ -11,6 +12,10 @@ class RouteHelper{
   static const String addAddress = "/add-address";
   static const String pickAddress = "/pick-address";
 
+  static const String payment = "/payment";
+  static const String orderSuccess = "/order-successful";
+
+
 
 
   static String getSplash ()=> '$splashScreen';
@@ -21,6 +26,8 @@ class RouteHelper{
   static String getCartPage()=> '$cartPage';
   static String getAddressPage()=> '$addAddress';
   static String getPickAddressPage()=> '$pickAddress';
+  static String getPaymentPage(String id, int userID)=> '$payment?id=$id&userID=$userID';
+  static String getOrderSuccessPage()=> '$orderSuccess';
 
 
   static List<GetPage> routes =[
@@ -81,5 +88,26 @@ class RouteHelper{
       },
       transition: Transition.fade,
     ),
+
+    GetPage(
+      name: payment,
+      page: ()=> PaymentPage(
+          orderModel: OrderModel(
+              id: int.parse(Get.parameters['id']!),
+              userId: int.parse(Get.parameters['userID']!),
+      ),
+    ), transition: Transition.fade,),
+
+
+    // GetPage(
+    //   name: orderSuccess,
+    //   page: ()=> OrderSuccess(
+    //     orderModel: OrderModel(
+    //       id: int.parse(Get.parameters['id']!),
+    //       userId: int.parse(Get.parameters['user_id']!),
+    //     ),
+    //   ), transition: Transition.fade,),
+
+
   ];
 }

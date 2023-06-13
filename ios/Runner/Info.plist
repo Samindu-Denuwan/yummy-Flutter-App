@@ -6,6 +6,12 @@
     <string>The app needs location permission</string>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>io.flutter.embedded_views_preview</key>
+    <string>YES</string>
+    <key>NSAppTransportSecurity</key>
+        <dict>
+          <key>NSAllowsArbitraryLoads</key>
+        </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

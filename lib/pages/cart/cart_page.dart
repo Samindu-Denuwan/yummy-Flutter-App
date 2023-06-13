@@ -248,7 +248,7 @@ class CartPage extends StatelessWidget {
                      Get.toNamed(RouteHelper.getAddressPage());
 
                    }else{
-                     Get.offNamed(RouteHelper.getInitial());
+                     Get.offNamed(RouteHelper.getPaymentPage('100003', Get.find<UserController>().userModel!.id));
                 //     cartController.addToHistory();
                    }
                   }else{
