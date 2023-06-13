@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/controllers/recommended_product_controller.dart';
+import 'package:yummy/models/place_order_model.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -248,7 +250,25 @@ class CartPage extends StatelessWidget {
                      Get.toNamed(RouteHelper.getAddressPage());
 
                    }else{
-                     Get.offNamed(RouteHelper.getPaymentPage('100003', Get.find<UserController>().userModel!.id));
+                     var location = Get.find<LocationController>().getUserAddress();
+                     var cart = Get.find<CartController>().getItems;
+                     var user = Get.find<UserController>().userModel!;
+                    PlaceOrderBody placeOrder = PlaceOrderBody(
+                        cart: cart,
+                        orderAmount: 100.0,
+                        orderNote: "Not about the food",
+                        distance: 10.0,
+                        address: location.address,
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                        contactPersonName: user.name,
+                        contactPersonNumber: user.phone,
+                       scheduleAt: '',
+
+                    );
+                     print("Tapped....");
+                     Get.find<OrderController>().placeOrder(placeOrder,_callback);
+                     //
                 //     cartController.addToHistory();
                    }
                   }else{
@@ -276,4 +296,14 @@ class CartPage extends StatelessWidget {
     );
 
   }
+
+  void _callback(bool isSuccess, String message, String orderId){
+    print("......Tapped....");
+    if(isSuccess){
+      Get.offNamed(RouteHelper.getPaymentPage(orderId, Get.find<UserController>().userModel!.id));
+    }else{
+      showCustomSnackBar(message);
+    }
+  }
+
 }

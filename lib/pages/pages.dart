@@ -12,3 +12,4 @@ export 'auth/sign_in_page.dart';
 export 'address/add_address_page.dart';
 export 'address/pick_address_map.dart';
 export 'payment/payment_page.dart';
+export 'payment/order_success_page.dart';
