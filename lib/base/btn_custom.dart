@@ -7,14 +7,15 @@ import 'package:yummy/widgets/big_text.dart';
 class BtnCustom extends StatelessWidget {
   final BigText bigText;
   final Color color;
+  final double width;
   final EdgeInsets margin;
-  const BtnCustom({Key? key,  required this.color, required this.bigText, required this.margin}) : super(key: key);
+  const BtnCustom({Key? key,  required this.color, required this.bigText, required this.margin, this.width=150}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      width: 150.w,
+      width: width.w,
       height: 60.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.w),

@@ -252,7 +252,7 @@ class CartPage extends StatelessWidget {
                    }else{
                      var location = Get.find<LocationController>().getUserAddress();
                      var cart = Get.find<CartController>().getItems;
-                     var user = Get.find<UserController>().userModel!;
+                     var user = Get.find<UserController>().userModel;
                     PlaceOrderBody placeOrder = PlaceOrderBody(
                         cart: cart,
                         orderAmount: 100.0,
@@ -261,12 +261,13 @@ class CartPage extends StatelessWidget {
                         address: location.address,
                         latitude: location.latitude,
                         longitude: location.longitude,
-                        contactPersonName: user.name,
+                        contactPersonName: user!.name,
                         contactPersonNumber: user.phone,
                        scheduleAt: '',
 
                     );
                      print("Tapped....");
+                     //Get.offNamed(RouteHelper.getPaymentPage("100003", Get.find<UserController>().userModel!.id));
                      Get.find<OrderController>().placeOrder(placeOrder,_callback);
                      //
                 //     cartController.addToHistory();

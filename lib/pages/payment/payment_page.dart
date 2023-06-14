@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/models/order_model.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
@@ -12,7 +12,7 @@ import 'package:yummy/widgets/big_text.dart';
 
 class PaymentPage extends StatefulWidget {
   final OrderModel orderModel;
-  PaymentPage({required this.orderModel});
+  const PaymentPage({required this.orderModel});
 
   @override
   _PaymentPageState createState() => _PaymentPageState();

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:yummy/data/api/api_checker.dart';
 import 'package:yummy/data/repository/order_repo.dart';
 import 'package:yummy/models/place_order_model.dart';
 
