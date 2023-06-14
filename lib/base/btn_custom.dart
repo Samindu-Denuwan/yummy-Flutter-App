@@ -8,8 +8,14 @@ class BtnCustom extends StatelessWidget {
   final BigText bigText;
   final Color color;
   final double width;
+  final double radius;
   final EdgeInsets margin;
-  const BtnCustom({Key? key,  required this.color, required this.bigText, required this.margin, this.width=150}) : super(key: key);
+  final bool isBoxShadow;
+  const BtnCustom({Key? key,  required this.color, required this.bigText, required this.margin,
+    this.width=150,
+    this.radius = 30,
+    this.isBoxShadow= false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +24,16 @@ class BtnCustom extends StatelessWidget {
       width: width.w,
       height: 60.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.w),
-          color: color
+          borderRadius: BorderRadius.circular(radius.w),
+          color: color,
+        boxShadow: [
+          isBoxShadow==true?
+          BoxShadow(
+        offset: Offset(0, 5),
+            blurRadius: 10,
+            color: AppColors.mainColor.withOpacity(0.3)
+          ): BoxShadow(),
+        ]
       ),
       child: Center(
           child: bigText,),

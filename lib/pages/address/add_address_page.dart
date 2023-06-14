@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:yummy/base/circular_loader.dart';
+import 'package:yummy/base/custom_app_bar.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/generated/assets.dart';
@@ -69,17 +70,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: BigText(
-          text: "Add Address",
-          color: Colors.white,
-          fontWeight: FontWeight.w500,
-          size: 20,
-        ),
-        centerTitle: true,
-        foregroundColor: Colors.white,
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: CustomAppBar(title: "Edit Address", backBtnExist: true, onBackPress: ()=>Get.back(),),
       body: GetBuilder<UserController>(
         builder: (userController) {
           if (userController.userModel != null &&

@@ -14,6 +14,15 @@ class OrderController extends GetxController implements GetxService{
  List<OrderModel>get historyOrderList=> _historyOrderList;
   bool get isLoading => _isLoading;
 
+  int _paymentIndex = 0;
+  int get paymentIndex => _paymentIndex;
+
+  String _deliveryType = 'delivery';
+  String get deliveryType  => _deliveryType;
+
+  bool _isToggled = false;
+  bool get isToggled  => _isToggled;
+
   Future<void> placeOrder(PlaceOrderBody placeOrder, Function callback)async{
     _isLoading = true;
     Response response =await orderRepo.placeOrder(placeOrder);
@@ -55,11 +64,24 @@ class OrderController extends GetxController implements GetxService{
   _historyOrderList = [];
   _runningOrderList = [];
  }
-
  _isLoading = false;
- print("length of running orders...........:"+ _runningOrderList.length.toString());
-  print("length of history orders...........:"+ _historyOrderList.length.toString());
  update();
-
   }
+
+  void setPaymentIndex(int index){
+    _paymentIndex = index;
+    update();
+  }
+
+  void setDeliveryType(String type){
+    _deliveryType = type;
+    update();
+  }
+
+  void setToggled(bool value){
+    _isToggled = value;
+    update();
+  }
+
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:yummy/base/circular_loader.dart';
+import 'package:yummy/base/custom_app_bar.dart';
 import 'package:yummy/base/custom_signIn.dart';
 import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
@@ -24,14 +25,7 @@ class AccountPage extends StatelessWidget {
       print("user loggin in");
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: Center(
-          child: BigText(
-            text: "My Profile",
-            size: 19, color: Colors.white,),
-        ),
-      ),
+      appBar: const CustomAppBar(title: "My Profile", backBtnExist: false),
       body: GetBuilder<UserController>(
         builder: (userController) {
         return _userLoggedIn?(!userController.isLoading?Container(

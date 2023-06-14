@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yummy/base/custom_app_bar.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/pages/pages.dart';
 import 'package:yummy/utils/colors.dart';
@@ -29,11 +30,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: BigText(text: "My Orders", color: Colors.white,size: 19,),
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: const CustomAppBar(title: "My Orders", backBtnExist: false),
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -62,8 +59,8 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin{
             child: TabBarView(
               controller: _tabController,
                 children: [
-                  ViewOrder(isCurrent: true),
-                  ViewOrder(isCurrent: false),
+                  const ViewOrder(isCurrent: true),
+                  const ViewOrder(isCurrent: false),
                 ]
             ),
           ),

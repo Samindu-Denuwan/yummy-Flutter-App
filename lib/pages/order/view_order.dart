@@ -38,8 +38,14 @@ class ViewOrder extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SmallText(text: 'ORDER ID:  #${orderList[index].id}', color: Colors.black,
-                            size: 12,),
+                            Row(
+                              children: [
+                                SmallText(text: 'ORDER ID : ', color: Colors.black54,
+                                  size: 12,),
+                                SmallText(text: ' #${orderList[index].id}', color: Colors.black,
+                                  size: 12, fontWeight: FontWeight.w500,)
+                              ],
+                            ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
