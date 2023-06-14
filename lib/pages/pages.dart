@@ -13,3 +13,5 @@ export 'address/add_address_page.dart';
 export 'address/pick_address_map.dart';
 export 'payment/payment_page.dart';
 export 'payment/order_success_page.dart';
+export 'order/order_page.dart';
+export 'order/view_order.dart';

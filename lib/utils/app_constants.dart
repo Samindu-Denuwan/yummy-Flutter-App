@@ -28,6 +28,7 @@ class AppConstants{
   static const String PLACE_DETAILS_URI = '/api/v1/config/place-api-details';
 
   static const String PLACE_ORDER_URI = '/api/v1/customer/order/place';
+  static const String ORDER_LIST_URI = '/api/v1/customer/order/list';
 
   static const String TOKEN = '';
   static const String PHONE = '';

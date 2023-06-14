@@ -28,8 +28,8 @@ class AccountPage extends StatelessWidget {
         backgroundColor: AppColors.mainColor,
         title: Center(
           child: BigText(
-            text: "Profile",
-            size: 24, color: Colors.white,),
+            text: "My Profile",
+            size: 19, color: Colors.white,),
         ),
       ),
       body: GetBuilder<UserController>(

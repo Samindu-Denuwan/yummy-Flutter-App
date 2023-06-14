@@ -1,12 +1,17 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:yummy/data/repository/order_repo.dart';
+import 'package:yummy/models/order_model.dart';
 import 'package:yummy/models/place_order_model.dart';
 
 class OrderController extends GetxController implements GetxService{
   final OrderRepo orderRepo;
   OrderController({required this.orderRepo});
   bool _isLoading = false;
+  late List<OrderModel> _runningOrderList;
+  late List<OrderModel> _historyOrderList;
+  List<OrderModel> get runningOrderList=> _runningOrderList;
+ List<OrderModel>get historyOrderList=> _historyOrderList;
   bool get isLoading => _isLoading;
 
   Future<void> placeOrder(PlaceOrderBody placeOrder, Function callback)async{
@@ -21,6 +26,40 @@ class OrderController extends GetxController implements GetxService{
     }else{
       callback(false, response.statusText!, '-1');
     }
+
+  }
+
+  Future<void> getOrderList()async {
+  _isLoading = true;
+ Response response = await orderRepo.getOrderList();
+ if(response.statusCode ==200){
+    _historyOrderList = [];
+    _runningOrderList = [];
+
+    response.body.forEach((order){
+      OrderModel orderModel = OrderModel.fromJson(order);
+      if(orderModel.orderStatus== 'pending'||
+          orderModel.orderStatus== 'accepted'||
+          orderModel.orderStatus== 'processing'||
+          orderModel.orderStatus== 'confirmed'||
+          orderModel.orderStatus== 'handover'||
+          orderModel.orderStatus== 'picked_up'
+      ){
+        _runningOrderList.add(orderModel);
+
+      }else{
+        _historyOrderList.add(orderModel);
+      }
+    });
+ }else{
+  _historyOrderList = [];
+  _runningOrderList = [];
+ }
+
+ _isLoading = false;
+ print("length of running orders...........:"+ _runningOrderList.length.toString());
+  print("length of history orders...........:"+ _historyOrderList.length.toString());
+ update();
 
   }
 }

@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:yummy/base/show_custom_snackbar.dart';
 import 'package:yummy/controllers/controllers.dart';
 import 'package:yummy/models/order_model.dart';
 import 'package:yummy/routes/route_helper.dart';
@@ -110,8 +112,14 @@ class _PaymentPageState extends State<PaymentPage> {
         _canRedirect = false;
       }
       if (_isSuccess) {
+        Get.snackbar("Successful", "Your payment is successful.",
+            icon: Icon(Icons.check_circle, size: 30.sp, color: Colors.white,),
+            backgroundColor: AppColors.mainColor,
+            colorText: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w));
         Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'success'));
       } else if (_isFailed || _isCancel) {
+        showCustomSnackBar("Your order is failed", title: "Failed");
        Get.offNamed(RouteHelper.getOrderSuccessPage(widget.orderModel.id.toString(), 'fail'));
       }else{
         print("Encountered problem");

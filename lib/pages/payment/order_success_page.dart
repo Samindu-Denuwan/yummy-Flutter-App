@@ -33,23 +33,16 @@ class OrderSuccessPage extends StatelessWidget {
               Center(
                 child: Lottie.network(status==1? AppConstants.CHECKED_ANIMATION:AppConstants.WARNING_ANIMATION,
                 width: 300.w,
-                height: 300.h,
+                height: 270.h,
                 fit: BoxFit.cover),
               ),
               SizedBox(height: 45.h,),
-              Text(status==1? 'You placed the order': 'Your order is',
+              Text(status==1? 'You placed the order Successfully': 'Your order is Failed',
                 style: TextStyle(
-                  fontSize: 24.sp,
+                  fontSize: 19.sp,
                 ),
               ),
-              SizedBox(height: 8.h,),
-              Text( status==1? 'Successfully': 'Failed',
-              style: TextStyle(
-                fontSize: 24.sp,
-                fontWeight: FontWeight.w500,
-                color:status==1? Colors.green: Colors.red
-              ),
-              ),
+
               Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,
@@ -58,7 +51,7 @@ class OrderSuccessPage extends StatelessWidget {
                 child: Center(
                   child: Text( status==1? 'Successful Order': 'Failed Order',
                     style: TextStyle(
-                      fontSize: 18.sp,
+                      fontSize: 16.sp,
                       color: Colors.grey,
                     ),
                     //textAlign: TextAlign.center,
@@ -70,7 +63,6 @@ class OrderSuccessPage extends StatelessWidget {
                   padding: EdgeInsets.all(20.w),
                 child: GestureDetector(
                   onTap: (){
-                    Get.find<CartController>().addToHistory();
                     Get.offAllNamed(RouteHelper.getInitial());
                   },
                   child: BtnCustom(

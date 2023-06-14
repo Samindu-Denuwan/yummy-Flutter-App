@@ -68,13 +68,9 @@ if(sharedPreferences.containsKey(AppConstants.CART_LIST)){
     for(int i = 0; i<cart.length; i++){
       cartHistory.add(cart[i]);
     }
-    removeCart();
+    cart=[];
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("History length ..........: ${getCartHistoryList().length}");
-   for(int j =0; j<getCartHistoryList().length; j++){
-     print("Time... ${getCartHistoryList()[j].time}");
-   }
     Get.snackbar("Checkout", "Checkout Complete!.",
         icon: Icon(Icons.check_circle, size: 30.sp, color: Colors.white,),
         backgroundColor: AppColors.mainColor,
@@ -93,5 +89,11 @@ if(sharedPreferences.containsKey(AppConstants.CART_LIST)){
     sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
 
   }
+
+  void removeCartSharedPreference() {
+    sharedPreferences.remove(AppConstants.CART_LIST);
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  }
+
 
 }

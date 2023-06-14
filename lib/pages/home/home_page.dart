@@ -33,9 +33,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       const MainFoodPage(),
-      Center(child: BigText(text: "History")),
+      const OrderPage(),
       const CartHistory(),
-       AccountPage(),
+       const AccountPage(),
     ];
   }
 
