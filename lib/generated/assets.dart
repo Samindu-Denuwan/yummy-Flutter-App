@@ -2,8 +2,13 @@
 class Assets {
   Assets._();
 
+  static const String animationCheck = 'assets/animation/check.json';
+  static const String animationCustomSignin = 'assets/animation/custom-signin.json';
+  static const String animationEmpty = 'assets/animation/empty.json';
   static const String animationEmptyCart = 'assets/animation/empty_cart.json';
   static const String animationLoading = 'assets/animation/loading.json';
+  static const String animationSignIn = 'assets/animation/sign-in.json';
+  static const String animationWarning = 'assets/animation/warning.json';
   static const String fontPoppinsBold = 'assets/font/Poppins-Bold.ttf';
   static const String fontPoppinsMedium = 'assets/font/Poppins-Medium.ttf';
   static const String fontPoppinsRegular = 'assets/font/Poppins-Regular.ttf';

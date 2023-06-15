@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/big_text.dart';
@@ -18,9 +19,7 @@ class CustomSignIn extends StatelessWidget {
         width: double.maxFinite,
         child: Column(
           children: [
-            Lottie.network("https://assets8.lottiefiles.com/packages/lf20_q5evpnci.json",
-              fit: BoxFit.cover,
-            ),
+            Lottie.asset(Assets.animationSignIn, fit: BoxFit.cover),
             SizedBox(height: 10.h,),
             GestureDetector(
               onTap: (){

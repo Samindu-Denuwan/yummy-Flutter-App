@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yummy/base/btn_custom.dart';
 import 'package:yummy/controllers/controllers.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -31,7 +32,7 @@ class OrderSuccessPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
-                child: Lottie.network(status==1? AppConstants.CHECKED_ANIMATION:AppConstants.WARNING_ANIMATION,
+                child: Lottie.asset(status==1? Assets.animationCheck:Assets.animationWarning,
                 width: 300.w,
                 height: 270.h,
                 fit: BoxFit.cover),

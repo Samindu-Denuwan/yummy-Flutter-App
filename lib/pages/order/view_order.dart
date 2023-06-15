@@ -41,9 +41,9 @@ class ViewOrder extends StatelessWidget {
                             Row(
                               children: [
                                 SmallText(text: 'ORDER ID : ', color: Colors.black54,
-                                  size: 12,),
+                                  size: 14,),
                                 SmallText(text: ' #${orderList[index].id}', color: Colors.black,
-                                  size: 12, fontWeight: FontWeight.w500,)
+                                  size: 14, fontWeight: FontWeight.w500,)
                               ],
                             ),
                             Column(

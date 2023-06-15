@@ -181,7 +181,8 @@ class CartHistory extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  Lottie.network(AppConstants.EMPTY_CART),
+                  SizedBox(height: 30.h,),
+                  Lottie.asset(Assets.animationEmpty, fit: BoxFit.cover),
                   SizedBox(height: 30.h,),
                   Center(child: BigText(text: "You didn't buy anything so far !", color: Colors.black26,)),
                   Center(child: BigText(text: "Explore more", color: Colors.black26,)),

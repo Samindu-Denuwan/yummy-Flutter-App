@@ -20,6 +20,9 @@ class OrderController extends GetxController implements GetxService{
   String _deliveryType = 'delivery';
   String get deliveryType  => _deliveryType;
 
+  String _foodNote = '';
+  String get foodNote  => _foodNote;
+
   bool _isToggled = false;
   bool get isToggled  => _isToggled;
 
@@ -82,6 +85,7 @@ class OrderController extends GetxController implements GetxService{
     _isToggled = value;
     update();
   }
+
 
 
 }

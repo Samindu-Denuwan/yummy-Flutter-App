@@ -264,7 +264,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   longitude: locationController.position.longitude.toString());
               locationController.addAddress(_addressModel).then((response) {
                 if (response.isSuccess) {
-                  Get.toNamed(RouteHelper.getInitial());
+                  Get.back();
                   showCustomSnackBar("Added Successfully",
                       title: "Address",
                       isError: false,
