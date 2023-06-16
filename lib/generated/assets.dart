@@ -7,6 +7,9 @@ class Assets {
   static const String animationEmpty = 'assets/animation/empty.json';
   static const String animationEmptyCart = 'assets/animation/empty_cart.json';
   static const String animationLoading = 'assets/animation/loading.json';
+  static const String animationLoadingPage = 'assets/animation/loading-page.json';
+  static const String animationMyOrdes = 'assets/animation/my-ordes.json';
+  static const String animationScreenPageLoading = 'assets/animation/screen-page-loading.json';
   static const String animationSignIn = 'assets/animation/sign-in.json';
   static const String animationWarning = 'assets/animation/warning.json';
   static const String fontPoppinsBold = 'assets/font/Poppins-Bold.ttf';

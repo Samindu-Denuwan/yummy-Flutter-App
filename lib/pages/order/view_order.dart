@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/controllers/order_controller.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/models/order_model.dart';
 import 'package:yummy/utils/colors.dart';
 import 'package:yummy/widgets/big_text.dart';
@@ -22,6 +24,52 @@ class ViewOrder extends StatelessWidget {
           if(orderController.runningOrderList.isNotEmpty){
             orderList =isCurrent? orderController.runningOrderList.reversed.toList()
                 :orderController.historyOrderList.reversed.toList();
+          }else{
+            orderList = [];
+            return Stack(
+              children: [
+                Center(
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        Lottie.asset(Assets.animationLoadingPage, fit: BoxFit.cover),
+                        SizedBox(
+                          height: 30.h,
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 50.h,
+                    left: 0,
+                    right: 0,
+                    child: Lottie.asset(Assets.animationMyOrdes,
+                       fit: BoxFit.cover)
+                ),
+                Positioned(
+                    bottom: 30.h,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          BigText(
+                            text: "No Food Items yet?",
+                            color: Colors.black26,
+                          ),
+                          BigText(
+                            text: "Explore more",
+                            color: AppColors.mainColor,
+                          )
+                        ],
+                      ),
+                    )
+                )
+              ],
+            );
           }
           return SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -34,7 +82,7 @@ class ViewOrder extends StatelessWidget {
                       print("order");
                     },
                       child: Container(
-                        padding: EdgeInsets.only(bottom: 15.h, left: 20.w, right: 20.w, top: 15.w),
+                        padding: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w, ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -87,6 +135,17 @@ class ViewOrder extends StatelessWidget {
                                         size: 10,),
                                       ],
                                     ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 10.h),
+                                  width: MediaQuery.of(context).size.width/2,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        width: 1, color: Colors.grey.shade300
+                                      )
+                                    )
                                   ),
                                 ),
                               ],
