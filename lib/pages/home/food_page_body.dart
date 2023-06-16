@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:lottie/lottie.dart';
+import 'package:yummy/base/circular_loader.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/controllers/recommended_product_controller.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/models/products_model.dart';
 import 'package:yummy/pages/food/popular_food_detail.dart';
 import 'package:yummy/pages/food/recomended_food_detail.dart';
@@ -107,12 +110,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         //Recommended List
         GetBuilder<RecommendedProductController>(
             builder: (recommendedProduct) {
-              return ListView.builder(
+              return recommendedProduct.isLoaded? ListView.builder(
                 physics:  const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: recommendedProduct.recommendedProductList.length,
                 itemBuilder: (context, index) {
-                  return recommendedProduct.isLoaded?GestureDetector(
+                  return GestureDetector(
                     onTap: (){
                       Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
                     },
@@ -124,15 +127,20 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           Container(
                             width:100.w,
                             height:100.h,
-                            decoration: BoxDecoration(
-                                image:  DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: CachedNetworkImageProvider(
-                                      AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(20.w),
-                                color: Colors.white38
+                            child: CachedNetworkImage(imageUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!,
+                            imageBuilder: (context, imageProvider) => Container(
+                              width:100.w,
+                              height:100.h,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.w),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                              ),
+                            ),
+                                placeholder: (context, url) =>  Lottie.asset(Assets.animationImageLoading,
+                                    fit: BoxFit.cover)  ,
+                                errorWidget: (context, url, error) =>
+                                const Image(image: AssetImage(Assets.imageLoadImage), fit: BoxFit.cover,)  ,
                             ),
                           ),
                           //Text Container
@@ -183,10 +191,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         ],
                       ),
                     ),
-                  ): const CircularProgressIndicator(
-                    color: AppColors.mainColor,
                   );
-                },);
+                },) :  CircularLoader();
             },),
         SizedBox(height: 10.h),
       ],
@@ -229,14 +235,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             child: Container(
               height: 220.h,
               margin: EdgeInsets.only(left: 10.w, right: 10.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.w),
-                  color: index.isEven ? Colors.yellow : Colors.blue,
-                  image:  DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!),
-
+              child: CachedNetworkImage(imageUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!,
+                imageBuilder: (context, imageProvider) => Container(
+                  height: 220.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.w),
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
                   ),
+                ),
+                placeholder: (context, url) =>  Lottie.asset(Assets.animationImageLoading,
+                    fit: BoxFit.cover)  ,
+                errorWidget: (context, url, error) =>
+                const Image(image: AssetImage(Assets.imageLoadImage), fit: BoxFit.cover,)  ,
               ),
             ),
           ),

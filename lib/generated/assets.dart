@@ -6,9 +6,11 @@ class Assets {
   static const String animationCustomSignin = 'assets/animation/custom-signin.json';
   static const String animationEmpty = 'assets/animation/empty.json';
   static const String animationEmptyCart = 'assets/animation/empty_cart.json';
+  static const String animationImageLoading = 'assets/animation/image-loading.json';
   static const String animationLoading = 'assets/animation/loading.json';
   static const String animationLoadingPage = 'assets/animation/loading-page.json';
   static const String animationMyOrdes = 'assets/animation/my-ordes.json';
+  static const String animationPlaceholder = 'assets/animation/placeholder.json';
   static const String animationScreenPageLoading = 'assets/animation/screen-page-loading.json';
   static const String animationSignIn = 'assets/animation/sign-in.json';
   static const String animationWarning = 'assets/animation/warning.json';
@@ -45,6 +47,7 @@ class Assets {
   static const String imageGuest = 'assets/image/guest.png';
   static const String imageHouse = 'assets/image/house.png';
   static const String imageLanguage = 'assets/image/language.png';
+  static const String imageLoadImage = 'assets/image/loadImage.jpg';
   static const String imageLocation = 'assets/image/location.png';
   static const String imageLocationMarker = 'assets/image/location_marker.png';
   static const String imageLock = 'assets/image/lock.png';

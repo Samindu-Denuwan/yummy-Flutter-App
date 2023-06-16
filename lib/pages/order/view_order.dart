@@ -79,7 +79,71 @@ class ViewOrder extends StatelessWidget {
                   return InkWell(
                     splashColor: AppColors.mainColor.withOpacity(0.2),
                     onTap: (){
-                      print("order");
+                       showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                          context: context, builder: (_) {
+                          return Container(
+                            width: MediaQuery.of(context)
+                                .size
+                                .width,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.only(
+                                  topLeft:
+                                  Radius.circular(50.w),
+                                  topRight:
+                                  Radius.circular(50.w),
+                                ),
+                                color: Colors.white),
+                                 child: Padding(
+                              padding:
+                              EdgeInsets.only(top: 20.h),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child:
+                                    SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(10
+                                                    .w),
+                                                color: Colors
+                                                    .grey
+                                                    .shade400),
+                                            width: 50.w,
+                                            height: 5.h,
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets
+                                                .only(
+                                                left:
+                                                20.w,
+                                                right:
+                                                20.w),
+                                            //height: 540.h,
+                                            child: Column(
+                                              children: [
+                                                BigText(text: "${orderList[index].createdAt}"),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          );
+                          },);
                     },
                       child: Container(
                         padding: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w, ),

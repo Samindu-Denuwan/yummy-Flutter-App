@@ -114,12 +114,27 @@ class CartHistory extends StatelessWidget {
                                       height: 70.w,
                                       width: 70.w,
                                       margin: EdgeInsets.only(right: 5.w),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8.w),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: CachedNetworkImageProvider(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+getCartHistoryList[listCounter-1].img!),
-                                          )
+                                      // decoration: BoxDecoration(
+                                      //     borderRadius: BorderRadius.circular(8.w),
+                                      //     image: DecorationImage(
+                                      //         fit: BoxFit.cover,
+                                      //         image: CachedNetworkImageProvider(AppConstants.BASE_URL+AppConstants.UPLOAD_URL+getCartHistoryList[listCounter-1].img!),
+                                      //     )
+                                      // ),
+                                      child: CachedNetworkImage(imageUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+getCartHistoryList[listCounter-1].img!,
+                                        imageBuilder: (context, imageProvider) => Container(
+                                          height: 70.w,
+                                          width: 70.w,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8.w),
+                                            image: DecorationImage(
+                                                image: imageProvider, fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                        placeholder: (context, url) =>  Lottie.asset(Assets.animationImageLoading,
+                                            fit: BoxFit.cover)  ,
+                                        errorWidget: (context, url, error) =>
+                                        const Image(image: AssetImage(Assets.imageLoadImage), fit: BoxFit.cover,)  ,
                                       ),
 
                                     ): Container();

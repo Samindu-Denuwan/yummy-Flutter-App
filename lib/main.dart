@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/controllers/cart_controller.dart';
@@ -13,10 +11,10 @@ import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
+
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
@@ -24,17 +22,11 @@ Future<void> main() async {
         systemNavigationBarDividerColor: Colors.transparent,
         systemNavigationBarColor:Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark));
-   //   await Geolocator.requestPermission();
         enableLocation();
-
-
-
 
   }
   runApp(const MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

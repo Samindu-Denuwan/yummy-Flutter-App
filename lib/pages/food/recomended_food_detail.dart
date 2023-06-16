@@ -2,9 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:yummy/controllers/recommended_product_controller.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -101,13 +103,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             expandedHeight: 300.h,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(imageUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
-                placeholder:(context, url) => SizedBox(
-                  width: 100.w,
-                  height: 100.h,
-                  child: const CircularProgressIndicator(
-                    color: AppColors.mainColor,
-                  ),
-                ),
+                placeholder:(context, url) => Lottie.asset(Assets.animationPlaceholder,
+                    fit: BoxFit.cover),
                 width: double.maxFinite,
                 fit: BoxFit.cover,),
             ),

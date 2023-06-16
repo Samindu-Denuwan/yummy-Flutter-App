@@ -2,8 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:yummy/base/custom_cached_image.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
+import 'package:yummy/generated/assets.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/app_constants.dart';
 import 'package:yummy/utils/colors.dart';
@@ -35,13 +38,15 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: 350.h,
-              decoration:  BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!)
-                  )
-              ),
+              // decoration:  BoxDecoration(
+              //     image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: CachedNetworkImageProvider(
+              //             AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!)
+              //     ),
+              // ),
+              child: CustomCachedImage(
+                  imgUrl: AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,),
             ),
           ),
           //icon widget
