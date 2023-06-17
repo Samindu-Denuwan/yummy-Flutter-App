@@ -147,22 +147,6 @@ class CartPage extends StatelessWidget {
                                               height: 90.h,
                                               margin:
                                                   EdgeInsets.only(bottom: 10.h),
-                                              // decoration: BoxDecoration(
-                                              //   borderRadius:
-                                              //       BorderRadius.circular(
-                                              //           20.w),
-                                              //   image: DecorationImage(
-                                              //     fit: BoxFit.cover,
-                                              //     image:
-                                              //         CachedNetworkImageProvider(
-                                              //             AppConstants
-                                              //                     .BASE_URL +
-                                              //                 AppConstants
-                                              //                     .UPLOAD_URL +
-                                              //                 _cartList[index]
-                                              //                     .img!),
-                                              //   ),
-                                              // )
                                               child: CachedNetworkImage(
                                                 imageUrl: AppConstants
                                                         .BASE_URL +
@@ -373,7 +357,7 @@ class CartPage extends StatelessWidget {
                                       color: Colors.white),
                                   child: BigText(
                                       text:
-                                          "LKR ${cartController.totalAmount}"),
+                                      "\$  ${cartController.totalAmount}"),
                                 ),
                                 InkWell(
                                   onTap: () {
@@ -575,13 +559,8 @@ class CartPage extends StatelessWidget {
                                                             PlaceOrderBody(
                                                           cart: cart,
                                                           orderAmount: 100.0,
-                                                          orderNote: orderController
-                                                                  .isToggled
-                                                              ? (orderController
-                                                                      .foodNote
-                                                                      .isNotEmpty
-                                                                  ? orderController
-                                                                      .foodNote
+                                                          orderNote: orderController.isToggled?(_noteController.text.isNotEmpty
+                                                                  ? _noteController.text
                                                                   : "Empty Note")
                                                               : "Empty Note",
                                                           distance: 10.0,
@@ -605,6 +584,7 @@ class CartPage extends StatelessWidget {
                                                               ? 'cash_on_delivery'
                                                               : 'digital_payment',
                                                         );
+                                                        _noteController.clear();
 
                                                         Get.find<
                                                                 OrderController>()

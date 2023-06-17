@@ -192,7 +192,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ),
                     ),
                   );
-                },) :  CircularLoader();
+                },) :  Center(
+                child: Container(
+                  width: double.infinity,
+                  child: Lottie.asset(Assets.animationLoadingPage, fit: BoxFit.cover),
+                ),
+              );
             },),
         SizedBox(height: 10.h),
       ],
@@ -244,10 +249,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         image: imageProvider, fit: BoxFit.cover),
                   ),
                 ),
-                placeholder: (context, url) =>  Lottie.asset(Assets.animationImageLoading,
-                    fit: BoxFit.cover)  ,
+                placeholder: (context, url) =>  Container(
+                  height: 220.h,
+                  width: double.maxFinite,
+                  child: Lottie.asset(Assets.animationImageLoading,
+                      fit: BoxFit.cover),
+                )  ,
                 errorWidget: (context, url, error) =>
-                const Image(image: AssetImage(Assets.imageLoadImage), fit: BoxFit.cover,)  ,
+                Container(
+                    height: 220.h,
+                    width: double.maxFinite,
+                    child: const Image(image: AssetImage(Assets.imageLoadImage), fit: BoxFit.cover,))  ,
               ),
             ),
           ),

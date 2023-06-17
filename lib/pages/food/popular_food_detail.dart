@@ -212,7 +212,7 @@ class PopularFoodDetail extends StatelessWidget {
                       child: Row(
                         children: [
                           BigText(
-                            text: "LKR ${product.price} |",
+                            text: "\$ ${product.price} |",
                             color: Colors.white,
                           ),
                           SizedBox(

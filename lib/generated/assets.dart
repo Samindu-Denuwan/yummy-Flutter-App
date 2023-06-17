@@ -54,7 +54,9 @@ class Assets {
   static const String imageLogOut = 'assets/image/log_out.png';
   static const String imageLoginbtn = 'assets/image/loginbtn.png';
   static const String imageLoginimg = 'assets/image/loginimg.png';
+  static const String imageLogo1 = 'assets/image/logo1.png';
   static const String imageLogoName = 'assets/image/logo_name.png';
+  static const String imageLogoNew = 'assets/image/logo-new.png';
   static const String imageLogoPart1 = 'assets/image/logo_part_1.png';
   static const String imageLogoPart2 = 'assets/image/logo_part_2.png';
   static const String imageMail = 'assets/image/mail.png';
@@ -85,6 +87,7 @@ class Assets {
   static const String imageUser = 'assets/image/user.png';
   static const String imageUserMarker = 'assets/image/user_marker.png';
   static const String imageWarning = 'assets/image/warning.png';
+  static const String imageYummy = 'assets/image/Yummy_.png';
   static const String languageAr = 'assets/language/ar.json';
   static const String languageEn = 'assets/language/en.json';
 

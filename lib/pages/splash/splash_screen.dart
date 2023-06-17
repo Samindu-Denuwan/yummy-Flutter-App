@@ -49,26 +49,24 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       body: Stack(
         children: [
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ScaleTransition(
-                    scale: animation,
-                    child: Image(
-                      image: const AssetImage(
-                        Assets.imageLogoPart1,), width: 250.w,)),
-                Image(
-                  image: const AssetImage(
-                    Assets.imageLogoPart2,), width: 250.w,),
-              ],
+            child: Center(
+              child: ScaleTransition(
+                  scale: animation,
+                  child: Image(
+                    image: const AssetImage(
+                      Assets.imageYummy,), width: MediaQuery.of(context).size.width/1.3,)),
             ),
           ),
           Positioned(
             bottom: 10.h,
-            left: 0,
+            left: 0.w,
             right: 0,
-            child: Lottie.network(
-                "https://assets4.lottiefiles.com/packages/lf20_tmnc73b6.json"
+            child: Container(
+              padding: EdgeInsets.only(left: 150.w, right: 150.w, bottom: 50.h),
+              width: 100.w,
+              child: Lottie.network(
+                  "https://assets4.lottiefiles.com/packages/lf20_tmnc73b6.json"
+              , fit: BoxFit.fill,width: 100.w,),
             ),
           ),
         ],

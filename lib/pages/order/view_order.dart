@@ -28,18 +28,10 @@ class ViewOrder extends StatelessWidget {
             orderList = [];
             return Stack(
               children: [
-                Center(
+                Positioned(
                   child: Container(
                     width: double.infinity,
-                    child: Column(
-                      children: [
-                        Lottie.asset(Assets.animationLoadingPage, fit: BoxFit.cover),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-
-                      ],
-                    ),
+                    child: Lottie.asset(Assets.animationLoadingPage, fit: BoxFit.cover),
                   ),
                 ),
                 Positioned(
@@ -130,7 +122,7 @@ class ViewOrder extends StatelessWidget {
                                             //height: 540.h,
                                             child: Column(
                                               children: [
-                                                BigText(text: "${orderList[index].createdAt}"),
+                                                BigText(text: "${orderList[index].orderAmount}"),
                                               ],
                                             ),
                                           ),
@@ -221,7 +213,12 @@ class ViewOrder extends StatelessWidget {
                 },),
           );
         }else{
-          return CircularLoader();
+          return Center(
+            child: Container(
+              width: double.infinity,
+              child: Lottie.asset(Assets.animationLoadingPage, fit: BoxFit.cover),
+            ),
+          );
         }
 
       },),

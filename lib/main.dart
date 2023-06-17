@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yummy/controllers/cart_controller.dart';
 import 'package:yummy/controllers/popular_product_controller.dart';
 import 'package:flutter/services.dart';
+import 'package:yummy/pages/auth/sign_in_page.dart';
+import 'package:yummy/pages/auth/sign_up_page.dart';
+import 'package:yummy/pages/splash/splash_screen.dart';
 import 'package:yummy/routes/route_helper.dart';
 import 'package:yummy/utils/colors.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Poppins',
                 useMaterial3: true,
               ),
-              //home: SignInPage(),
+              //home: SplashScreen(),
               initialRoute: RouteHelper.getSplash(),
               getPages: RouteHelper.routes,
             );

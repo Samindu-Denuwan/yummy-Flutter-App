@@ -92,8 +92,7 @@ class SignUpPage extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 80.w,
-                      backgroundImage:
-                      const AssetImage(Assets.imageLogoPart1),
+                        backgroundImage: const AssetImage(Assets.imageLogo1)
                     ),
                   ),
                 ),

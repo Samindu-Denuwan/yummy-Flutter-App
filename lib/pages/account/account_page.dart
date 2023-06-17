@@ -28,7 +28,7 @@ class AccountPage extends StatelessWidget {
       appBar: const CustomAppBar(title: "My Profile", backBtnExist: false),
       body: GetBuilder<UserController>(
         builder: (userController) {
-        return _userLoggedIn?(!userController.isLoading?Container(
+        return _userLoggedIn?(userController.userModel!= null?Container(
           width: double.maxFinite,
           margin: EdgeInsets.only(top: 20.h),
           child: Column(
