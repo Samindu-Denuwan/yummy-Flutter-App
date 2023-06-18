@@ -10,7 +10,7 @@
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCR90pHGq9jRNQDQOxhrZS3j_x--cJGTKM"/>
+            android:value="API KEY"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
