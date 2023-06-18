@@ -162,7 +162,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   children: [
                                     BigText(text: recommendedProduct.recommendedProductList[index].name!),
                                     SizedBox(height: 10.h,),
-                                    SmallText(text: "with chocolate moose"),
+                                    SmallText(text: "Special Offers are available"),
                                     SizedBox(height: 10.h,),
                                     const Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

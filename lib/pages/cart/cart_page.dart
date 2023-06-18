@@ -207,7 +207,7 @@ class CartPage extends StatelessWidget {
                                                     children: [
                                                       BigText(
                                                         text:
-                                                            "LKR ${_cartList[index].price}",
+                                                        "\$ ${_cartList[index].price}",
                                                         color: Colors.red,
                                                       ),
                                                       Row(
